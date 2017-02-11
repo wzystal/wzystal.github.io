@@ -1,12 +1,12 @@
 # Site settings
 title: Wzystal's Blog
-SEOTitle: 昭阳的部落格 | Wzystal's Blog
+SEOTitle: 王昭阳的部落格 | Wzystal's Blog
 header-img: img/home-bg.jpg
 email: wzystal@gmail.com
 description: ""
 keyword: ""
 url: "http://wzystal.github.io"              # your host, for absolute URL
-baseurl: "/huxblog-boilerplate"         # for example, '/blog' if your blog hosted on 'host/blog'
+baseurl: "/wzystal"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
@@ -68,7 +68,7 @@ ga_domain: wzystal.github.io
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "悲观的乐天派"
+sidebar-about-description: "Never say never."
 sidebar-avatar: https://avatars0.githubusercontent.com/u/3941400?v=3&amp;s=460      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
@@ -84,17 +84,5 @@ friends: [
     {
         title: "Hux Blog",
         href: "http://huangxuan.me"
-    },{
-        title: "Foo",
-        href: "#"
-    },{
-        title: "Bar",
-        href: "#"
-    },{
-        title: "Example Friends",
-        href: "#"
-    },{
-        title: "It helps SEO",
-        href: "#"
     }
 ]

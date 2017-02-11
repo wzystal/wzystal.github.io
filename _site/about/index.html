@@ -153,10 +153,10 @@
                 post-container
             ">
     			<!-- Language Selector -->
-<select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+<!-- <select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
     <option value="0" selected> 中文 Chinese </option>
     <option value="1"> 英语 English </option>
-</select>
+</select> -->
 
 <!-- Chinese Version -->
 <div class="zh post-container">
@@ -167,7 +167,7 @@
 </div>
 
 <!-- English Version -->
-<div class="en post-container">
+<!-- <div class="en post-container">
     <blockquote>
         Designer or Engineer, things in between.
     </blockquote>
@@ -181,10 +181,10 @@
     </p>
 
     <p style="text-align:right;">
-    -- Steve Jobs
+    Steve Jobs
     </p>
 
-</div>
+</div> -->
 
 <!-- Handle Language Change -->
 <script type="text/javascript">
@@ -222,6 +222,20 @@
 
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
+var duoshuoQuery = {short_name:"wzystal"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+<!-- 多说公共JS代码 end -->
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<!-- <script type="text/javascript">
     // dynamic User hacking by Hux
     var _user = document.getElementById('dsUser').value;
     // duoshuo comment query.
@@ -235,7 +249,7 @@
          || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
 </script>
-<!-- 多说公共JS代码 end -->
+ --><!-- 多说公共JS代码 end -->
 
 
 
@@ -259,26 +273,6 @@
                         
                             
                         
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                                <a href="/wzystal/tags/#Java" title="Java" rel="3">
-                                    Java
-                                </a>
-                            
-                        
-                            
-                                <a href="/wzystal/tags/#Android" title="Android" rel="3">
-                                    Android
-                                </a>
-                            
-                        
-                            
-                        
                     </div>
                 </section>
                 
@@ -296,14 +290,7 @@
                         <!-- SNS Link -->
                         <ul class="list-inline">
                             
-                            <li>
-                                <a target="_blank" href="https://github.com/wzystal">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
+                            
                             
                             <li>
                                 <a target="_blank" href="https://www.zhihu.com/people/wzystal">
@@ -330,6 +317,16 @@
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
                                         <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a target="_blank" href="https://github.com/wzystal">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
                             </li>
@@ -363,15 +360,6 @@
                     
 
                     <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
-
-                                 <li>
-                        <a target="_blank" href="https://github.com/wzystal">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
                     
                     <li>
                         <a target="_blank" href="https://www.zhihu.com/people/wzystal">
@@ -405,18 +393,25 @@
                     </li>
                     
                     
-       
+                    <li>
+                        <a target="_blank" href="https://github.com/wzystal">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
                     
                 </ul>
                 <p class="copyright text-muted">
                     Copyright &copy; Wzystal's Blog 2017
                     <br>
-                    Theme by <a href="http://huangxuan.me">Hux</a> |
-                    <iframe
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <!-- <iframe
                         style="margin-left: 2px; margin-bottom:-5px;"
                         frameborder="0" scrolling="0" width="91px" height="20px"
                         src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
-                    </iframe>
+                    </iframe> -->
                 </p>
             </div>
         </div>

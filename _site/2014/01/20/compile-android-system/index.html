@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>LeetCode | Reorder List - 王昭阳的部落格 | Wzystal's Blog</title>
+    <title>基于Chipsee资料编译Android系统 - 王昭阳的部落格 | Wzystal's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/2014/06/20/reorder-list/">
+    <link rel="canonical" href="http://localhost:4000/2014/01/20/compile-android-system/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -125,12 +125,12 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-leetcode.jpg" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-android-logo.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/post-bg-leetcode.jpg')
+        background-image: url('/img/post-bg-android-logo.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -140,17 +140,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#算法" title="算法">算法</a>
-                        
-                        <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        <a class="tag" href="/tags/#Android" title="Android">Android</a>
                         
                     </div>
-                    <h1>LeetCode | Reorder List</h1>
+                    <h1>基于Chipsee资料编译Android系统</h1>
                     
                     
-                    <h2 class="subheading">Given a singly linked list L: L0→L1→…→Ln-1→Ln, reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→… You must do this in-place without altering the nodes' values.</h2>
+                    <h2 class="subheading">基于Chipsee提供的相关资料编译出Android 4.0.3文件系统，并移植到Pandaboard ES开发板上运行</h2>
                     
-                    <span class="meta">Posted by wzystal on June 20, 2014</span>
+                    <span class="meta">Posted by wzystal on January 20, 2014</span>
                 </div>
             </div>
         </div>
@@ -168,80 +166,63 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h3 id="原题描述"><a href="https://oj.leetcode.com/problems/reorder-list/">原题描述</a></h3>
-<blockquote>
-  <p>Given a singly linked list L: L0→L1→…→Ln-1→Ln,
-reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…<br />
-You must do this in-place without altering the nodes’ values.<br />
-For example, <br />
-Given {1,2,3,4}, reorder it to {1,4,2,3}.</p>
+				<blockquote>
+  <p>本文旨在基于Chipsee提供的相关资料编译出Android 4.0.3文件系统，并移植到Pandaboard ES开发板上运行。</p>
 </blockquote>
 
-<h3 id="解题思路">解题思路</h3>
-<ol>
-  <li>将单链表从中点处拆分成两部分：head和middle，可以采用快慢指针的方法实现；</li>
-  <li>将middle部分单链表反转；</li>
-  <li>穿插式合并head和middle两部分。</li>
-</ol>
-
-<h3 id="实现代码">实现代码</h3>
-<div class="highlighter-rouge"><pre class="highlight"><code>//Reorder List  
-public class Solution {  
-    class ListNode {  
-        int val;  
-        ListNode next;  
-  
-        public ListNode(int val) {  
-            this.val = val;  
-            next = null;  
-        }  
-    }  
-  
-    public void reorderList(ListNode head) {  
-        if (head == null || head.next == null)  
-            return;  
-        ListNode fast = head, slow = head;  
-        while (fast != null &amp;&amp; fast.next != null &amp;&amp; fast.next.next != null) {  
-            slow = slow.next;  
-            fast = fast.next.next;  
-        }  
-        ListNode middle = slow.next;  
-        slow.next = null;  
-        middle = reverseList(middle);  
-        ListNode n1 = head, n2 = middle;  
-        mergeList(n1, n2);  
-    }  
-  
-    //反转单链表  
-    private ListNode reverseList(ListNode head) {  
-        if (head == null || head.next == null)  
-            return head;  
-        ListNode pre = head, cur = head.next;  
-        while (cur != null) {  
-            ListNode temp = cur.next;  
-            cur.next = pre;  
-            pre = cur;  
-            cur = temp;  
-        }  
-        head.next = null; //important!  
-        return pre;  
-    }  
-  
-    //穿插合并单链表  
-    private void mergeList(ListNode n1, ListNode n2) {  
-        ListNode t1, t2;  
-        while (n2 != null) {  
-            t1 = n1.next;  
-            t2 = n2.next;  
-            n1.next = n2;  
-            n2.next = t1;  
-            n1 = t1;  
-            n2 = t2;  
-        }  
-    }  
-}  
+<p>在编译之前，你需要先去Git网站上下载Andorid 4.0.3源码，由于时间问题具体的下载流程本文先不予描述，以后再写博客补上。So，现在我默认你已经拿到了一份Andorid 4.0.3的源码，接下来就等着开始我们的编译之旅了。</p>
+<h3 id="1-搭建编译环境">1. 搭建编译环境</h3>
+<p>这一步万分重要！！因为在编译过程中，我们遇到的很多错误往往就是编译环境的问题，比如说哪个需要的库没安装、或者安装了版本又不对等等（关于这些编译过程中的错误及解决方案，我会另外整理一篇博客供大家参考）。
+关于编译环境，我建议大家参考官方给出的文档来搭建，链接地址如下：<a href="http://source.android.com/source/initializing.html">http://source.android.com/source/initializing.html</a>。大家可以根据自己的具体情况，搭建好正确的编译环境。以我本人为例，我是在Ubuntu 12.04 LTS系统下进行编译的，系统自带的Python、GNU Make和Git都符合条件，所以不用再更新，只需安装其他的包即可：
+Installing required packages (Ubuntu 12.04)</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ sudo apt-get install git gnupg flex bison gperf build-essential \
+  zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
+  libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \
+  libgl1-mesa-dev g++-multilib mingw32 tofrodos \
+  python-markdown libxml2-utils xsltproc zlib1g-dev:i386
+$ sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
 </code></pre>
 </div>
+<p>需要补充的一点是，官方文档中“Installing the JDK”部分的信息已经过期了（从”sun-java6-jdk”就可以看出端倪，SUN公司早在2009年就已经被ORACLE收购了，所以现在不可能还有”sun-java”的存在），我们需要通过其他方式来安装JDK6，大家可以参考我的另一篇博文《Ubuntu系统下安装和配置JDK 》来进行安装。</p>
+
+<h3 id="2-交叉编译工具toolchain">2. 交叉编译工具（toolchain）</h3>
+<p>搭建好本机的编译环境以后，我们需要下载对应的交叉编译工具，Chipsee提供的交叉编译工具为android-toolchain-eabi-linaro，官方提供的下载网址目前已经失效，有需要的朋友可以留言联系我。下载好交叉编译工具包以后，我们可以将其解压到适当的目录，然后在编译脚本中设置好环境变量，就可以在编译过程中使用了。在本例中，我直接将交叉编译工具解压到了Android 4.0.3源码的根目录下。</p>
+
+<h3 id="3-编译android文件系统">3. 编译Android文件系统</h3>
+<p>在确保完成了以上准备工作以后，我们就可以开始进行Android 4.0.3的编译了。
+基于Chipsee提供的linaro_android_build_cmds.sh脚本，我自己改写了一个版本build.sh，具体代码如下：</p>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash </span>
+<span class="nb">export </span><span class="nv">TARGET_PRODUCT</span><span class="o">=</span>pandaboard
+<span class="nb">export </span><span class="nv">TARGET_SIMULATOR</span><span class="o">=</span><span class="nb">false
+export </span><span class="nv">CPUS</span><span class="o">=</span><span class="sb">`</span>grep -c processor /proc/cpuinfo<span class="sb">`</span>
+<span class="nb">export </span><span class="nv">TARGET_TOOLS_PREFIX</span><span class="o">=</span>android-toolchain-eabi/bin/arm-linux-androideabi-  <span class="c">#本例中，交叉编译工具就在源码根目录下，此处直接用了相对路径</span>
+<span class="c"># build the code</span>
+build/envsetup.sh
+make -j<span class="k">${</span><span class="nv">CPUS</span><span class="k">}</span> <span class="nv">HOST_CC</span><span class="o">=</span>gcc-4.4 <span class="nv">HOST_CXX</span><span class="o">=</span>g++-4.4 <span class="nv">HOST_CPP</span><span class="o">=</span>cpp-4.4 boottarball systemtarball userdatatarball <span class="c">#此处需使用gcc-4.4/g++-4.4或者gcc-4.5/g++-4.5版本</span>
+</code></pre>
+</div>
+<p>将build.sh拷贝至在Android 4.0.3源码的根目录下，然后执行 sudo ./build.sh，编译工作就开始了，编译时间取决于机器的CPU执行效率，本人在双核CPU、8G内存的服务器上编译花费了10多分钟。编译过程中，可能会出现各种千奇百怪的问题，我个人总结了一些，后续会整理出来供大家参考。</p>
+
+<h3 id="4-移植android文件系统">4. 移植Android文件系统</h3>
+<p>编译过程顺利的话，源码的根目录下会生成out/target/product/pandaboard目录，该目录中包含有编译生成的Android文件系统：boot.tar.bz2、system.tar.bz2、userdata.tar.bz2。</p>
+<h4 id="41-boot文件的移植">4.1 boot文件的移植</h4>
+<p>编译完成以后，我们可以直接通过Chipsee提供的制作脚本mksdcard-chipsee-ics.sh（做卡过程中需要注意system目录的权限问题），将编译生成的文件系统写入SD卡中，然后将SD卡插到Pandaboard ES开发板上，在开发板上启动编译好的Android 4.0.3系统。通过minicom超级终端，我们可以看到，虽然系统可以启动成功，但是Pandaboard扩展板的LCD屏幕上没有任何系统界面输出。这是因为通过上述步骤编译的uImage(在boot.tar.bz2中)并未对Pandaboard ES的LCD屏幕驱动做移植，我们需要基于Chipsee提供的Kernel资料，编译出支持Pandaboard ES屏幕的uImage，同时为了保证与新uImage的兼容，我们需要使用Chipsee提供的MLO、u-boot.img和boot.scr文件。</p>
+<h4 id="42-system文件的移植">4.2 system文件的移植</h4>
+<p>除了boot文件的移植，Chipsee也对system目录下的某些文件进行了移植，移植文件列表如下：</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>/system/vendor/
+/system/bin/pvrsrvinit
+/system/usr/keylayout/Generic.kl (system partition, ASCII)
+/system/usr/idc/ads7846.idc (system partition, ASCII)
+/system/usr/idc/ft5x0x.idc (system partition, ASCII)
+/system/lib/hw/sensors.omap4.so (system partition, Binary only)
+/init.omap4pandaboard.rc (Ramdisk, ASCII)
+/init.chipsee.sh (Ramdisk, ASCII)
+</code></pre>
+</div>
+<p>针对上述文件，Chipsee为我们提供了移植好的版本，我们只需一一对应替换掉编译版本中的文件即可。</p>
+
+<h4 id="5-启动android系统">5. 启动Android系统</h4>
+<p>完成移植工作以后，重新制作SD卡并通电启动Pandaboard开发板，就可以成功启动自己编译好的Android系统，并能在扩展板的LCD屏幕上看到梦寐以求的系统界面了！</p>
 
 
 
@@ -252,14 +233,15 @@ public class Solution {
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2014/06/20/reorder-list"
-                    data-title="LeetCode | Reorder List"
-                    data-url="http://localhost:4000/2014/06/20/reorder-list/"
-                    data-images="http://localhost:4000/img/post-bg-leetcode.jpg"
-                    data-content="原题描述
+                    data-thread-key="/2014/01/20/compile-android-system"
+                    data-title="基于Chipsee资料编译Android系统"
+                    data-url="http://localhost:4000/2014/01/20/compile-android-system/"
+                    data-images="http://localhost:4000/img/post-bg-android-logo.jpg"
+                    data-content="
+  本文旨在基于Chipsee提供的相关资料编译出Android 4.0.3文件系统，并移植到Pandaboard ES开发板上运行。
 
-  Given a singly linked list L: L0→L1→…→Ln-1→Ln,
-reorder it to: L0→Ln→L... | 王昭阳的部落格 | Wzystal's Blog " >
+
+在编译之前，... | 王昭阳的部落格 | Wzystal's Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -279,12 +261,12 @@ reorder it to: L0→Ln→L... | 王昭阳的部落格 | Wzystal's Blog " >
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2014/06/13/binary-tree-traversal/" data-toggle="tooltip" data-placement="top" title="LeetCode | Binary Tree traversal">&larr; Previous Post</a>
+                        <a href="/2014/01/16/ubuntu-install-jdk/" data-toggle="tooltip" data-placement="top" title="Ubuntu系统下安装和配置JDK">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2014/06/20/linked-list-cycle/" data-toggle="tooltip" data-placement="top" title="LeetCode | Linked List Cycle">Next Post &rarr;</a>
+                        <a href="/2014/06/10/lru-cache/" data-toggle="tooltip" data-placement="top" title="LeetCode | LRU Cache">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -294,9 +276,9 @@ reorder it to: L0→Ln→L... | 王昭阳的部落格 | Wzystal's Blog " >
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2014/06/20/reorder-list"
-                        data-title="LeetCode | Reorder List"
-                        data-url="http://localhost:4000/2014/06/20/reorder-list/" >
+                        data-thread-key="/2014/01/20/compile-android-system"
+                        data-title="基于Chipsee资料编译Android系统"
+                        data-url="http://localhost:4000/2014/01/20/compile-android-system/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->

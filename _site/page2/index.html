@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>About - 王昭阳的部落格 | Wzystal's Blog</title>
+    <title>王昭阳的部落格 | Wzystal's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/about/">
+    <link rel="canonical" href="http://localhost:4000/page2/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -124,14 +124,14 @@
 
 
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg-o.jpg')">
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
-                    <h1>About</h1>
+                    <h1>Wzystal's Blog</h1>
                     <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is wzystal.</span>
+                    <span class="subheading">Never say never.</span>
                 </div>
             </div>
         </div>
@@ -152,107 +152,72 @@
                 col-xs-12
                 post-container
             ">
-    			<!-- Language Selector -->
-<!-- <select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0" selected> 中文 Chinese </option>
-    <option value="1"> 英语 English </option>
-</select> -->
+    			
+<div class="post-preview">
+    <a href="/2014/01/20/compile-android-system/">
+        <h2 class="post-title">
+            基于Chipsee资料编译Android系统
+        </h2>
+        
+        <h3 class="post-subtitle">
+            基于Chipsee提供的相关资料编译出Android 4.0.3文件系统，并移植到Pandaboard ES开发板上运行
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  本文旨在基于Chipsee提供的相关资料编译出Android 4.0.3文件系统，并移植到Pandaboard ES开发板上运行。
 
-<!-- Chinese Version -->
-<div class="zh post-container">
-    <blockquote>
-        Never say never.
-    </blockquote>
-    Hey，today is a good day！
+
+在编译之前，你需要先去Git网站上下载Andorid 4.0.3源码，由于时间问题具体的下载流程本文先不予描述，以后再写博客补上。So，现在我默认你已经拿到了一份Andorid 4.0.3的源码，接下来就等着开始我们的编译之旅了。
+1. 搭建编译环境
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by wzystal on January 20, 2014
+    </p>
 </div>
+<hr>
 
-<!-- English Version -->
-<!-- <div class="en post-container">
-    <blockquote>
-        Designer or Engineer, things in between.
-    </blockquote>
+<div class="post-preview">
+    <a href="/2014/01/16/ubuntu-install-jdk/">
+        <h2 class="post-title">
+            Ubuntu系统下安装和配置JDK
+        </h2>
+        
+        <h3 class="post-subtitle">
+            如何在Ubuntu下，根据自己的需要来安装和配置JDK
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  目前Ubuntu12.04系统自带的JDK版本为OpenJDK，但有些时候我们需要用到ORACLE官方提供的JDK版本（比如编译Android文件系统），所以我们需要对其进行修改。本文主要为大家介绍Ubuntu下安装和配置JDK的一种常见方法。
 
-    <p>
-        Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle. As with all matters of the heart, you’ll know when you find it.
+
+废话不多说，上具体步骤：
+
+  
+    去ORACLE官网下载你想要安装的JDK版本（该版本还得与你当前使用的操作系统及位数相匹配）
+官...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by wzystal on January 16, 2014
     </p>
-
-    <p>
-    If you want to live your life in a creative way, as an artist, you have to not look back too much. You have to be willing to take whatever you’ve done and whoever you were and throw them away.
-    </p>
-
-    <p style="text-align:right;">
-    Steve Jobs
-    </p>
-
-</div> -->
-
-<!-- Handle Language Change -->
-<script type="text/javascript">
-    var $zh = document.querySelector(".zh");
-    var $en = document.querySelector(".en");
-    function onLanChange(index){
-        if(index == 0){
-            $zh.style.display = "block";
-            $en.style.display = "none";
-        }else{
-            $en.style.display = "block";
-            $zh.style.display = "none";
-        }
-    }
-    onLanChange(0);
-</script>
-
-
-
-
-<!-- 多说评论框 start -->
-<div class="comment">
-    <div class="ds-thread"
-    
-        data-thread-id="1187623191091085319"
-    
-
-    data-title="About"
-    data-url="http://localhost:4000/about/"></div>
 </div>
-<!-- 多说评论框 end -->
-
-<!-- Duoshuo hacking -->
-<input id="dsUser" type="hidden" value="wzystal"  />
-
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"wzystal"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-    </script>
-<!-- 多说公共JS代码 end -->
-
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<!-- <script type="text/javascript">
-    // dynamic User hacking by Hux
-    var _user = document.getElementById('dsUser').value;
-    // duoshuo comment query.
-    var duoshuoQuery = {short_name: _user };
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-</script>
- --><!-- 多说公共JS代码 end -->
+<hr>
 
 
+<!-- Pager -->
 
+<ul class="pager">
+    
+    <li class="previous">
+        <a href="/">&larr; Newer Posts</a>
+    </li>
+    
+    
+</ul>
 
 
     		</div>

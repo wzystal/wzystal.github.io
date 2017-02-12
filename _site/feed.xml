@@ -5,23 +5,9 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 12 Feb 2017 18:28:00 +0800</pubDate>
-    <lastBuildDate>Sun, 12 Feb 2017 18:28:00 +0800</lastBuildDate>
+    <pubDate>Sun, 12 Feb 2017 20:41:20 +0800</pubDate>
+    <lastBuildDate>Sun, 12 Feb 2017 20:41:20 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
-    
-      <item>
-        <title>我的第一篇博客</title>
-        <description>&lt;p&gt;hello，大家好，这是一篇测试博客！&lt;/p&gt;
-
-</description>
-        <pubDate>Sun, 12 Feb 2017 17:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/02/12/test-blog/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/02/12/test-blog/</guid>
-        
-        <category>技术</category>
-        
-        
-      </item>
     
       <item>
         <title>2017，新博客，心启航！</title>
@@ -41,6 +27,878 @@
         <guid isPermaLink="true">http://localhost:4000/2017/02/11/new-blog/</guid>
         
         <category>生活</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LeetCode | Single Number II</title>
+        <description>&lt;h3 id=&quot;原题描述&quot;&gt;&lt;a href=&quot;https://oj.leetcode.com/problems/single-number-ii/&quot;&gt;原题描述&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Given an array of integers, every element appears three times except for one. Find that single one.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;解题思路&quot;&gt;解题思路&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;方法1&lt;br /&gt;
+  通过一个HashMap来统计数字出现的次数，如果数字出现次数达到3，则将其移出HashMap，那么最终剩下的即为只出现过一次的那个数字。&lt;/li&gt;
+  &lt;li&gt;方法2&lt;br /&gt;
+  将数字表示为32位二进制数的形式，那么每个数字就等价于：32位二进制中，某些位的值为1。将这些数字按位相加，每一位统计1出现的次数并对3取余，那么最终的结果即为只出现过一次的那个数字。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;方法1和方法2都只需要O(N)的时间复杂度，但是方法1的空间复杂度为O(N)，方法2的空间复杂度虽然为O(1)，但是需要开辟一个大小32的整型数组。那么，不需要额外的空间，是否可以实现呢？
+  答案是肯定的：参考&lt;a href=&quot;http://www.cnblogs.com/daijinqiao/p/3352893.html&quot;&gt;http://www.cnblogs.com/daijinqiao/p/3352893.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;实现代码&quot;&gt;实现代码&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ * LeetCode | Single Number
+ * @author wzystal
+ */
+public class Solution {
+	// Given an array of integers, every element appears three times except for one. Find that single one.
+	// 时间复杂度O(N),空间复杂度O(N)
+	public static int singleNumber1(int[] A) {
+		Map&amp;lt;Integer, Integer&amp;gt; map = new HashMap&amp;lt;Integer, Integer&amp;gt;();
+		int len = A.length;
+		for (int i = 0; i &amp;lt; len; i++) {
+			if (map.containsKey(A[i])) {
+				int count = map.get(A[i]);
+				if (count == 2) {
+					map.remove(A[i]);
+				} else {
+					map.put(A[i], ++count);
+				}
+			} else {
+				map.put(A[i], 1);
+			}
+		}
+		return map.keySet().iterator().next();
+	}
+	
+	// Given an array of integers, every element appears three times except for one. Find that single one.
+	// 时间复杂度O(N),空间复杂度O(1),但是需要开辟一个大小为32的整型数组
+	public static int singleNumber2(int[] A) {
+		if (A.length == 0)
+			return 0;
+		int[] bits = new int[32];
+		int result = 0;
+		for (int i = 0; i &amp;lt; 32; i++) {
+			for (int j = 0; j &amp;lt; A.length; j++) {
+				if (((A[j] &amp;gt;&amp;gt; i) &amp;amp; 1) == 1) {
+					bits[i] = (bits[i] + 1) % 3;
+				}
+			}
+			result |= (bits[i] &amp;lt;&amp;lt; i);
+		}
+		return result;
+	}
+	
+	// Given an array of integers, every element appears three times except for one. Find that single one.
+	// 时间复杂度O(N),空间复杂度O(1)
+	public static int singleNumber3(int[] A) {
+		int len = A.length;
+		if (len == 0)
+			return 0;
+		int ones = 0, twos = 0, threes = 0;
+		for (int i = 0; i &amp;lt; len; i++) {
+			twos |= (ones &amp;amp; A[i]);
+			ones ^= A[i];
+			threes = ~(ones &amp;amp; twos);
+			ones &amp;amp;= threes;
+			twos &amp;amp;= threes;
+		}
+		return ones;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 14 Jul 2014 21:15:00 +0800</pubDate>
+        <link>http://localhost:4000/2014/07/14/leecode-single-number-ii/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/07/14/leecode-single-number-ii/</guid>
+        
+        <category>算法</category>
+        
+        <category>LeetCode</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LeetCode | Single Number</title>
+        <description>&lt;h3 id=&quot;原题描述&quot;&gt;&lt;a href=&quot;https://oj.leetcode.com/problems/single-number/&quot;&gt;原题描述&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Given an array of integers, every element appears twice except for one. Find that single one.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;解题思路&quot;&gt;解题思路&lt;/h3&gt;
+&lt;p&gt;可以利用异或运算来实现。关于异或运算的几个法则：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;a ^ a = 0;
+a ^ 0 = a;
+a ^ b = b ^ a ;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;实现代码&quot;&gt;实现代码&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
+ * LeetCode | Single Number
+ * @author wzystal
+ */
+public class Solution {
+	public int singleNumber(int[] A) {
+		int result = 0;
+		for (int i : A) {
+			result ^= i;
+		}
+		return result;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 14 Jul 2014 19:21:00 +0800</pubDate>
+        <link>http://localhost:4000/2014/07/14/leecode-single-number/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/07/14/leecode-single-number/</guid>
+        
+        <category>算法</category>
+        
+        <category>LeetCode</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LeetCode | Copy List with Random Pointer</title>
+        <description>&lt;h3 id=&quot;原题描述&quot;&gt;&lt;a href=&quot;https://oj.leetcode.com/problems/copy-list-with-random-pointer/&quot;&gt;原题描述&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
+Return a deep copy of the list.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;解题思路&quot;&gt;解题思路&lt;/h3&gt;
+&lt;p&gt;本题要复制的对象是带随机指针的单链表，随机指针指向单链表的某一个结点。
+参考文章：&lt;a href=&quot;http://blog.csdn.net/linhuanmars/article/details/22463599&quot;&gt;http://blog.csdn.net/linhuanmars/article/details/22463599&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;实现代码&quot;&gt;实现代码&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/** 
+ * Copy List with Random Pointer 
+ * @author wzystal 
+ */  
+public class Solution {  
+    class RandomListNode {  
+        int label;  
+        RandomListNode next, random;  
+  
+        public RandomListNode(int x) {  
+            this.label = x;  
+        }  
+    }  
+  
+    // 时间复杂度O(n),空间复杂度O(n)  
+    public RandomListNode copyRandomList1(RandomListNode head) {  
+        if (head == null)  
+            return head;  
+        HashMap&amp;lt;RandomListNode, RandomListNode&amp;gt; map = new HashMap&amp;lt;&amp;gt;();  
+        RandomListNode newHead = new RandomListNode(head.label);  
+        map.put(head, newHead);  
+        RandomListNode pre = newHead;  
+        RandomListNode node = head.next;  
+        while (node != null) {  
+            RandomListNode newNode = new RandomListNode(node.label);  
+            map.put(node, newNode);  
+            pre.next = newNode;  
+            pre = pre.next;  
+            node = node.next;  
+        }  
+        node = head;  
+        RandomListNode copyNode = newHead;  
+        while (node != null) {  
+            copyNode.random = map.get(node.random);  
+            copyNode = copyNode.next;  
+            node = node.next;  
+        }  
+        return newHead;  
+    }  
+  
+    // 时间复杂度O(n),空间复杂度O(1)  
+    public RandomListNode copyRandomList2(RandomListNode head) {  
+        if (head == null)  
+            return head;  
+        RandomListNode node = head;  
+        while (node != null) {  
+            RandomListNode newNode = new RandomListNode(node.label);  
+            newNode.next = node.next;  
+            node.next = newNode;  
+            node = newNode.next;  
+        }  
+        node = head;  
+        while (node != null) {  
+            if (node.random != null) {  
+                node.next.random = node.random.next;  
+            }  
+            node = node.next.next;  
+        }  
+        RandomListNode newHead = head.next;  
+        node = head;  
+        while (node != null) {  
+            RandomListNode newNode = node.next;  
+            node.next = newNode.next;  
+            if (newNode.next != null) {  
+                newNode.next = newNode.next.next;  
+            }  
+            node = node.next;  
+        }  
+        return newHead;  
+    }  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 14 Jul 2014 19:21:00 +0800</pubDate>
+        <link>http://localhost:4000/2014/07/14/leecode-copy-list-with-random-pointer/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/07/14/leecode-copy-list-with-random-pointer/</guid>
+        
+        <category>算法</category>
+        
+        <category>LeetCode</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LeetCode | Word Break</title>
+        <description>&lt;h3 id=&quot;原题描述&quot;&gt;&lt;a href=&quot;https://oj.leetcode.com/problems/word-break/&quot;&gt;原题描述&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For example, given
+s = “leetcode”,
+dict = [“leet”, “code”].&lt;/p&gt;
+
+&lt;p&gt;Return true because “leetcode” can be segmented as “leet code”.&lt;/p&gt;
+
+&lt;h3 id=&quot;解题思路&quot;&gt;解题思路&lt;/h3&gt;
+&lt;p&gt;动态规划思路求解。
+对于任何一个字符串S（长度为N），如果S能被字典集 dict “割裂”（即S能由dict中的单词拼接而成），那么必定有：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;T(0,N) = T(0,i) &amp;amp;&amp;amp; T(i,N) ; 
+T(i,j)表示字符串S从索引i到j所截取的部分，能被字典集dict割裂。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;所以，我们在遍历字符串S的时候，可以基于上述思路，每次将遍历得到的字符串S(0,i)划分为S(0,j)和S(j,i)，然后根据T(0,j) &amp;amp;&amp;amp; T(j,i)来判断S(0,i)能否被字典集dict割裂，同时我们在遍历过程中维护一个布尔数组can（can[i]==true表示S(0,i)能被字典集dict割裂），来避免重复计算。这样遍历并判断下去，can[len]的结果就是我们想要的解。&lt;/p&gt;
+
+&lt;h3 id=&quot;实现代码&quot;&gt;实现代码&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/** 
+ * LeetCode | Word Break 
+ *  
+ * @author wzystal@gmail.com 
+ */  
+public class Solution {  
+    public boolean wordBreak(String s, Set&amp;lt;String&amp;gt; dict) {  
+        if (s == null || s.length() == 0 || dict == null || dict.size() == 0)  
+            return false;  
+        int len = s.length();  
+        boolean[] can = new boolean[len + 1];  
+        can[0] = true;  
+        for (int i = 1; i &amp;lt;= len; i++) {  
+            for (int j = 0; j &amp;lt; i; j++) {  
+                if (can[j] &amp;amp;&amp;amp; dict.contains(s.substring(j, i))) {  
+                    can[i] = true;  
+                    break;  
+                }  
+            }  
+        }  
+        return can[len];  
+    }  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 02 Jul 2014 21:28:00 +0800</pubDate>
+        <link>http://localhost:4000/2014/07/02/word-break/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/07/02/word-break/</guid>
+        
+        <category>算法</category>
+        
+        <category>LeetCode</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LeetCode | Word Break II</title>
+        <description>&lt;h3 id=&quot;原题描述&quot;&gt;&lt;a href=&quot;https://oj.leetcode.com/problems/word-break-ii/&quot;&gt;原题描述&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Return all such possible sentences.&lt;/p&gt;
+
+&lt;p&gt;For example, given
+s = “catsanddog”,
+dict = [“cat”, “cats”, “and”, “sand”, “dog”].&lt;/p&gt;
+
+&lt;p&gt;A solution is [“cats and dog”, “cat sand dog”].&lt;/p&gt;
+
+&lt;h3 id=&quot;解题思路&quot;&gt;解题思路&lt;/h3&gt;
+&lt;p&gt;动态规划+DFS&lt;/p&gt;
+
+&lt;h3 id=&quot;实现代码&quot;&gt;实现代码&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/** 
+ * LeetCode | Word Break II 
+ * @author wzystal@gmail.com 
+ */  
+public class Solution {  
+    List&amp;lt;String&amp;gt; records = new ArrayList&amp;lt;String&amp;gt;();  
+  
+    public List&amp;lt;String&amp;gt; wordBreak(String s, Set&amp;lt;String&amp;gt; dict) {  
+        if (canBreak(s, dict)) {  
+            dfsSearch(s, dict, &quot;&quot;);  
+        }  
+        return records;  
+    }  
+  
+    private boolean canBreak(String s, Set&amp;lt;String&amp;gt; dict) {  
+        if (s == null || s.length() == 0 || dict == null || dict.size()==0)  
+            return false;  
+        int len = s.length();  
+        boolean[] can = new boolean[len + 1];  
+        can[0] = true;  
+        for (int i = 1; i &amp;lt;= len; i++) {  
+            for (int j = 0; j &amp;lt; i; j++) {  
+                if (can[j] &amp;amp;&amp;amp; dict.contains(s.substring(j, i))) {  
+                    can[i] = true;  
+                    break;  
+                }  
+            }  
+        }  
+        return can[len];  
+    }  
+  
+    private void dfsSearch(String str, Set&amp;lt;String&amp;gt; dict, String result) {  
+        int len = str.length();  
+        if (len == 0) {  
+            records.add(result);  
+        }  
+        for (int i = 0; i &amp;lt;= len; i++) {  
+            String sub = str.substring(0,i);  
+            if(dict.contains(sub)){  
+                int curLen = result.length();  
+                if(!result.equals(&quot;&quot;)){  
+                    result += &quot; &quot;;  
+                }  
+                result += sub;  
+                dfsSearch(str.substring(i), dict, result);  
+                result = result.substring(0, curLen);  
+            }  
+        }  
+    }  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 02 Jul 2014 19:21:00 +0800</pubDate>
+        <link>http://localhost:4000/2014/07/02/word-break-ii/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/07/02/word-break-ii/</guid>
+        
+        <category>算法</category>
+        
+        <category>LeetCode</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LeetCode | Linked List Cycle</title>
+        <description>&lt;h3 id=&quot;原题描述&quot;&gt;&lt;a href=&quot;https://oj.leetcode.com/problems/linked-list-cycle/&quot;&gt;原题描述&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;判断一个单链表是否有环，若有环的话，返回环的入口点。空间复杂度为O(1)。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;解题思路&quot;&gt;解题思路&lt;/h3&gt;
+&lt;p&gt;快慢指针法。慢指针步长为1，快指针步长为2，两个指针同时从头结点开始扫描，若单链表存在环，则两个指针必定会相遇，而且是在慢指针遍历完环之前。原理解析可以参考：&lt;a href=&quot;http://blog.csdn.net/loveyou426/article/details/7927297&quot;&gt;http://blog.csdn.net/loveyou426/article/details/7927297&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;那么环的入口点又该怎么找呢？&lt;/p&gt;
+
+&lt;p&gt;我们假设单链表长度为len，头结点到环入口点的距离为a，环入口点到相遇点的距离为b，整个环的长度为r。显然有len=a+r。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;由于相遇时慢指针还未转完一圈，所以慢指针的”行程”为(a+b)，快指针的”行程”则为慢指针”行程”的两倍:2(a+b);&lt;/li&gt;
+    &lt;li&gt;我们假设快慢指针相遇时，快指针已经绕了环n圈，显然快指针的”行程”可以计算为:(a+b)+n*r;&lt;/li&gt;
+    &lt;li&gt;结合1、2可知: 2(a+b)=(a+b)+n&lt;em&gt;r,即(a+b)=n&lt;/em&gt;r –&amp;gt; (a+b)=(n-1)&lt;em&gt;r+r –&amp;gt; (a+b)=(n-1)&lt;/em&gt;r+(len-a) –&amp;gt; a=(n-1)*r+(len-a-b)。其中(len-a-b)正好是相遇点到环入口的距离。也就是说，指针从头结点到环入口的距离，正好等于指针从相遇点到环入口的距离！&lt;/li&gt;
+    &lt;li&gt;由3中结论，我们找到相遇点以后，可以同时设置两个指针，分别从头结点和相遇点开始遍历，由于头结点到环入口的距离等于相遇点到环入口的距离，所以当两个指针相遇时，它们的相遇点即为环的入口点！&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;实现代码&quot;&gt;实现代码&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/** 
+ * LeetCode | Linked List Cycle 
+ * @author Young Z. Wang 
+ */  
+public class Solution {  
+    class ListNode {  
+        int val;  
+        ListNode next;  
+  
+        public ListNode(int val) {  
+            this.val = val;  
+            this.next = null;  
+        }  
+    }  
+  
+    // 判断单链表是否有环  
+    public boolean hasCycle(ListNode head) {  
+        if (head == null || head.next == null) return false;  
+        ListNode slow = head, fast = head;  
+        while (fast != null &amp;amp;&amp;amp; fast.next != null) {  
+            slow = slow.next;  
+            fast = fast.next.next;  
+            if (fast == slow) return true;  
+        }  
+        return false;  
+    }  
+  
+    // 若单链表存在环，返回环的入口点  
+    public ListNode detectCycle(ListNode head) {  
+        if (head == null || head.next == null) return null;  
+        ListNode slow = head, fast = head;  
+        while (fast != null &amp;amp;&amp;amp; fast.next != null) {  
+            slow = slow.next;  
+            fast = fast.next.next;  
+            if (fast == slow) break;  
+        }  
+        if (fast == slow) {  
+            ListNode n1 = head, n2 = slow;  
+            while(n1 != n2){  
+                n1 = n1.next;  
+                n2 = n2.next;  
+            }  
+            return n1;  
+        }  
+        return null;  
+    }  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Fri, 20 Jun 2014 20:50:00 +0800</pubDate>
+        <link>http://localhost:4000/2014/06/20/linked-list-cycle/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/06/20/linked-list-cycle/</guid>
+        
+        <category>算法</category>
+        
+        <category>LeetCode</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LeetCode | Reorder List</title>
+        <description>&lt;h3 id=&quot;原题描述&quot;&gt;&lt;a href=&quot;https://oj.leetcode.com/problems/reorder-list/&quot;&gt;原题描述&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Given a singly linked list L: L0→L1→…→Ln-1→Ln,
+reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…&lt;br /&gt;
+You must do this in-place without altering the nodes’ values.&lt;br /&gt;
+For example, &lt;br /&gt;
+Given {1,2,3,4}, reorder it to {1,4,2,3}.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;解题思路&quot;&gt;解题思路&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;将单链表从中点处拆分成两部分：head和middle，可以采用快慢指针的方法实现；&lt;/li&gt;
+  &lt;li&gt;将middle部分单链表反转；&lt;/li&gt;
+  &lt;li&gt;穿插式合并head和middle两部分。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;实现代码&quot;&gt;实现代码&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//Reorder List  
+public class Solution {  
+    class ListNode {  
+        int val;  
+        ListNode next;  
+  
+        public ListNode(int val) {  
+            this.val = val;  
+            next = null;  
+        }  
+    }  
+  
+    public void reorderList(ListNode head) {  
+        if (head == null || head.next == null)  
+            return;  
+        ListNode fast = head, slow = head;  
+        while (fast != null &amp;amp;&amp;amp; fast.next != null &amp;amp;&amp;amp; fast.next.next != null) {  
+            slow = slow.next;  
+            fast = fast.next.next;  
+        }  
+        ListNode middle = slow.next;  
+        slow.next = null;  
+        middle = reverseList(middle);  
+        ListNode n1 = head, n2 = middle;  
+        mergeList(n1, n2);  
+    }  
+  
+    //反转单链表  
+    private ListNode reverseList(ListNode head) {  
+        if (head == null || head.next == null)  
+            return head;  
+        ListNode pre = head, cur = head.next;  
+        while (cur != null) {  
+            ListNode temp = cur.next;  
+            cur.next = pre;  
+            pre = cur;  
+            cur = temp;  
+        }  
+        head.next = null; //important!  
+        return pre;  
+    }  
+  
+    //穿插合并单链表  
+    private void mergeList(ListNode n1, ListNode n2) {  
+        ListNode t1, t2;  
+        while (n2 != null) {  
+            t1 = n1.next;  
+            t2 = n2.next;  
+            n1.next = n2;  
+            n2.next = t1;  
+            n1 = t1;  
+            n2 = t2;  
+        }  
+    }  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Fri, 20 Jun 2014 20:17:00 +0800</pubDate>
+        <link>http://localhost:4000/2014/06/20/reorder-list/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/06/20/reorder-list/</guid>
+        
+        <category>算法</category>
+        
+        <category>LeetCode</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LeetCode | Binary Tree traversal</title>
+        <description>&lt;h3 id=&quot;原题描述&quot;&gt;原题描述&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;分别使用递归、非递归方法，实现二叉树的先序、中序和后序遍历。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;解题思路&quot;&gt;解题思路&lt;/h3&gt;
+&lt;p&gt;使用递归方法实现二叉树的遍历，简单至极，此处不再赘述。
+对于非递归方法，可以采用栈这种“先进后出”的数据结构，然后根据不同遍历方法的特点，画图分析其入栈、出栈的时机，最后将其转化成代码实现。三种遍历方法的实现流程如下：&lt;/p&gt;
+
+&lt;h5 id=&quot;先序遍历&quot;&gt;先序遍历&lt;/h5&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;根结点入栈；&lt;/li&gt;
+    &lt;li&gt;对于任一栈顶结点P，访问P并将其出栈；&lt;/li&gt;
+    &lt;li&gt;若P有右结点，则将P的右结点入栈；若P有左结点，则将P的左结点入栈；&lt;/li&gt;
+    &lt;li&gt;循环跳转到步骤2，直到栈为空。&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h5 id=&quot;中序遍历&quot;&gt;中序遍历&lt;/h5&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;当前结点初始化为根结点；&lt;/li&gt;
+    &lt;li&gt;对于任一当前结点P：若P有左结点，则将P入栈，并将当前结点置为P的左结点；否则访问栈顶结点将其出栈，并将当前结点置为P的右结点；&lt;/li&gt;
+    &lt;li&gt;循环跳转到步骤2，直到栈为空或者当前结点为空。&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h5 id=&quot;后序遍历&quot;&gt;后序遍历&lt;/h5&gt;
+&lt;p&gt;后序遍历的关键点，是要保证根结点必须要其孩子结点之后被访问，因此当一个结点要出栈时，该结点要么是叶子结点，要么前一个出栈的结点为该结点的孩子结点。这就需要额外维护一个结点pre，用来记录前一个出栈的结点。具体流程如下：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;根结点入栈；&lt;/li&gt;
+    &lt;li&gt;对于任一栈顶结点P，若P为叶子结点或者前一个出栈结点为该结点的孩子结点，则访问P并将其出栈，同时将P设置为前一个结点pre，供下次要出栈的结点参考（比较pre是否为下次出栈结点的孩子结点）；否则，依次将P的右结点和左结点入栈。&lt;/li&gt;
+    &lt;li&gt;循环跳转到步骤2，直到栈为空。&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;实现代码&quot;&gt;实现代码&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Solution {  
+    class TreeNode {  
+        int val;  
+        TreeNode left;  
+        TreeNode right;  
+  
+        public TreeNode(int x) {  
+            val = x;  
+        }  
+    }  
+  
+    // 先序遍历--递归实现  
+    public List&amp;lt;Integer&amp;gt; preorderTraversal(TreeNode root) {  
+        ArrayList&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();  
+        if (root == null) {  
+            return list;  
+        }  
+        list.add(root.val);  
+        list.addAll(preorderTraversal(root.left));  
+        list.addAll(preorderTraversal(root.right));  
+        return list;  
+    }  
+  
+    // 中序遍历--递归实现  
+    public List&amp;lt;Integer&amp;gt; inorderTraversal(TreeNode root) {  
+        ArrayList&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();  
+        if (root == null) {  
+            return list;  
+        }  
+        list.addAll(inorderTraversal(root.left));  
+        list.add(root.val);  
+        list.addAll(inorderTraversal(root.right));  
+        return list;  
+    }  
+  
+    // 后序遍历--递归实现  
+    public List&amp;lt;Integer&amp;gt; postorderTraversal(TreeNode root) {  
+        ArrayList&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();  
+        if (root == null) {  
+            return list;  
+        }  
+        list.addAll(postorderTraversal(root.left));  
+        list.addAll(postorderTraversal(root.right));  
+        list.add(root.val);  
+        return list;  
+    }  
+  
+    // 先序遍历--非递归实现  
+    public List&amp;lt;Integer&amp;gt; preorderStack(TreeNode root) {  
+        ArrayList&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();  
+        if (root == null)  
+            return list;  
+        Stack&amp;lt;TreeNode&amp;gt; stack = new Stack&amp;lt;TreeNode&amp;gt;();  
+        stack.push(root);  
+        TreeNode cur = null;  
+        while (!stack.empty()) {  
+            cur = stack.pop();  
+            list.add(cur.val);  
+            //先压入右结点，在压入左结点--栈的&quot;先进后出&quot;特性  
+            if (cur.right != null)   
+                stack.push(cur.right);  
+            if (cur.left != null)  
+                stack.push(cur.left);  
+        }  
+        return list;  
+    }  
+  
+    // 中序遍历--非递归实现  
+    public List&amp;lt;Integer&amp;gt; inorderStack(TreeNode root) {  
+        ArrayList&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();  
+        if (root == null)  
+            return list;  
+        Stack&amp;lt;TreeNode&amp;gt; stack = new Stack&amp;lt;TreeNode&amp;gt;();  
+        TreeNode cur = root;  
+        while (!stack.empty() || cur != null) {  
+            if (cur != null) {  
+                stack.push(cur);  
+                cur = cur.left;  
+            } else {  
+                TreeNode temp = stack.pop();  
+                list.add(temp.val);  
+                cur = temp.right;  
+            }  
+        }  
+        return list;  
+    }  
+  
+    // 后序遍历--非递归实现  
+    public List&amp;lt;Integer&amp;gt; postorderStack(TreeNode root) {  
+        ArrayList&amp;lt;Integer&amp;gt; list = new ArrayList&amp;lt;Integer&amp;gt;();  
+        if (root == null)  
+            return list;  
+        Stack&amp;lt;TreeNode&amp;gt; stack = new Stack&amp;lt;TreeNode&amp;gt;();  
+        stack.push(root);  
+        TreeNode pre = null;  
+        while (!stack.empty()) {  
+            TreeNode cur = stack.peek();  
+            if ((cur.left == null &amp;amp;&amp;amp; cur.right == null) ||   
+                (pre != null &amp;amp;&amp;amp; (pre == cur.left || pre == cur.right))) {  
+                list.add(cur.val);  
+                stack.pop();  
+                pre = cur;  
+            }else {  
+                if (cur.right != null)  
+                    stack.push(cur.right);  
+                if (cur.left != null)  
+                    stack.push(cur.left);  
+            }  
+        }  
+        return list;  
+    }  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Fri, 13 Jun 2014 09:02:00 +0800</pubDate>
+        <link>http://localhost:4000/2014/06/13/binary-tree-traversal/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/06/13/binary-tree-traversal/</guid>
+        
+        <category>算法</category>
+        
+        <category>LeetCode</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>LeetCode | LRU Cache</title>
+        <description>&lt;h3 id=&quot;原题描述&quot;&gt;原题描述&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.&lt;br /&gt;
+get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.&lt;br /&gt;
+set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;解题思路&quot;&gt;解题思路&lt;/h3&gt;
+&lt;p&gt;题目要求算法能根据键值对随机存取缓存，我们很容易就能想到使用哈希表来实现。但是题目还要求缓存是LRU（Least Recently Used）形式的，即在更新缓存时采用最近最少使用原则，这就需要数据结构能记录缓存的命中情况：每次有缓存被命中都需要将其标记为最近使用，当缓存大小超出容量时，需要删除最久未被使用的缓存。&lt;br /&gt;
+在Java中，正好有这么一种哈希表，可以记录数据的访问顺序，它就是LinkedHashMap。借助于LinkedHashMap，我们可以很容易地实现LRU Cache。实现代码如下：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import java.util.LinkedHashMap;  
+  
+public class LRUCache extends LinkedHashMap&amp;lt;Integer, Integer&amp;gt; {  
+    private int capacity;  
+  
+    public LRUCache1(int capacity) {  
+        super(capacity+1, 0.75f, true);  
+        this.capacity = capacity;  
+    }  
+  
+    @Override  
+    protected boolean removeEldestEntry(  
+            java.util.Map.Entry&amp;lt;Integer, Integer&amp;gt; eldest) {  
+        return size() &amp;gt; capacity; //当缓存大小超出容量时，移除最久未被使用的缓存  
+    }  
+  
+    public int get(int key) {  
+        return super.get(key) != null ? super.get(key) : -1;  
+    }  
+  
+    public void set(int key, int value) {  
+        super.put(key, value);  
+    }  
+  
+    public int size() {  
+        return super.size();  
+    }  
+  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;LinkedHashMap的方案虽然简便，但是它毕竟不是基本的数据结构，从算法设计的角度来说，我们还是需要一个使用基本数据结构来实现的方案。参考LinkedHashMap类的内部实现原理，我们可以通过哈希表+双链表的组合来实现LRU Cache。由哈希表来实现根据键值对（值为双链表结点）随机存取，由双链表来维护缓存的命中情况：最近使用的缓存在链表头结点，最久未使用的缓存在链表尾结点，当缓存被命中时，将其移至链表头结点，当缓存大小超出容量时，直接删除链表尾结点。代码实现如下：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class LRUCache {  
+  
+    class CacheNode {  
+        public int key;  
+        public int value;  
+        public CacheNode pre;  
+        public CacheNode next;  
+  
+        public CacheNode(int key, int value) {  
+            this.key = key;  
+            this.value = value;  
+        }  
+    }  
+  
+    private int capacity;  
+    private int size = 0;  
+    private HashMap&amp;lt;Integer, CacheNode&amp;gt; map = new HashMap&amp;lt;&amp;gt;();  
+    private CacheNode head;  
+    private CacheNode tail;  
+  
+    public LRUCache(int capacity) {  
+        this.capacity = capacity;  
+        head = null;  
+        tail = null;  
+    }  
+  
+    private void removeNode(CacheNode node) {  
+        CacheNode pre = node.pre;  
+        CacheNode next = node.next;  
+        if (pre != null) {  
+            pre.next = next;  
+        } else {  
+            head = next;  
+        }  
+        if (next != null) {  
+            next.pre = pre;  
+        } else {  
+            tail = pre;  
+        }  
+    }  
+  
+    private void setHead(CacheNode node) {  
+        node.next = head;  
+        node.pre = null;  
+        if (head != null) {  
+            head.pre = node;  
+        }  
+        head = node;  
+        if (tail == null) {  
+            tail = node;  
+        }  
+    }  
+  
+    public void set(int key, int value) {  
+        if (map.containsKey(key)) {  
+            CacheNode oldNode = map.get(key);  
+            oldNode.value = value;  
+            removeNode(oldNode);  
+            setHead(oldNode);  
+        } else {  
+            CacheNode newNode = new CacheNode(key, value);  
+            if (size &amp;lt; capacity) {  
+                size++;  
+            } else {  
+                map.remove(tail.key);  
+                tail = tail.pre;  
+                if (tail != null) {  
+                    tail.next = null;  
+                }  
+            }  
+            setHead(newNode);  
+            map.put(key, newNode);  
+        }  
+    }  
+  
+    public int get(int key) {  
+        if (map.containsKey(key)) {  
+            CacheNode lastest = map.get(key);  
+            removeNode(lastest);  
+            setHead(lastest);  
+            return lastest.value;  
+        } else {  
+            return -1;  
+        }  
+    }  
+  
+}  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Tue, 10 Jun 2014 11:07:00 +0800</pubDate>
+        <link>http://localhost:4000/2014/06/10/lru-cache/</link>
+        <guid isPermaLink="true">http://localhost:4000/2014/06/10/lru-cache/</guid>
+        
+        <category>算法</category>
+        
+        <category>LeetCode</category>
         
         
       </item>

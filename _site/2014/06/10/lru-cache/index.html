@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>About - 王昭阳的部落格 | Wzystal's Blog</title>
+    <title>LeetCode | LRU Cache - 王昭阳的部落格 | Wzystal's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/about/">
+    <link rel="canonical" href="http://localhost:4000/2014/06/10/lru-cache/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -123,121 +123,294 @@
 </script>
 
 
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg-o.jpg')">
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-leetcode.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/post-bg-leetcode.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>About</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Hey, this is wzystal.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#算法" title="算法">算法</a>
+                        
+                        <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        
+                    </div>
+                    <h1>LeetCode | LRU Cache</h1>
+                    
+                    
+                    <h2 class="subheading">Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.</h2>
+                    
+                    <span class="meta">Posted by wzystal on June 10, 2014</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-        
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
-    		<div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-    			<!-- Language Selector -->
-<!-- <select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
-    <option value="0" selected> 中文 Chinese </option>
-    <option value="1"> 英语 English </option>
-</select> -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-<!-- Chinese Version -->
-<div class="zh post-container">
-    <blockquote>
-        Never say never.
-    </blockquote>
-    Hey，today is a good day！
+				<h3 id="原题描述">原题描述</h3>
+<blockquote>
+  <p>Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.<br />
+get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.<br />
+set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.</p>
+</blockquote>
+
+<h3 id="解题思路">解题思路</h3>
+<p>题目要求算法能根据键值对随机存取缓存，我们很容易就能想到使用哈希表来实现。但是题目还要求缓存是LRU（Least Recently Used）形式的，即在更新缓存时采用最近最少使用原则，这就需要数据结构能记录缓存的命中情况：每次有缓存被命中都需要将其标记为最近使用，当缓存大小超出容量时，需要删除最久未被使用的缓存。<br />
+在Java中，正好有这么一种哈希表，可以记录数据的访问顺序，它就是LinkedHashMap。借助于LinkedHashMap，我们可以很容易地实现LRU Cache。实现代码如下：</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>import java.util.LinkedHashMap;  
+  
+public class LRUCache extends LinkedHashMap&lt;Integer, Integer&gt; {  
+    private int capacity;  
+  
+    public LRUCache1(int capacity) {  
+        super(capacity+1, 0.75f, true);  
+        this.capacity = capacity;  
+    }  
+  
+    @Override  
+    protected boolean removeEldestEntry(  
+            java.util.Map.Entry&lt;Integer, Integer&gt; eldest) {  
+        return size() &gt; capacity; //当缓存大小超出容量时，移除最久未被使用的缓存  
+    }  
+  
+    public int get(int key) {  
+        return super.get(key) != null ? super.get(key) : -1;  
+    }  
+  
+    public void set(int key, int value) {  
+        super.put(key, value);  
+    }  
+  
+    public int size() {  
+        return super.size();  
+    }  
+  
+}  
+</code></pre>
 </div>
 
-<!-- English Version -->
-<!-- <div class="en post-container">
-    <blockquote>
-        Designer or Engineer, things in between.
-    </blockquote>
-
-    <p>
-        Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle. As with all matters of the heart, you’ll know when you find it.
-    </p>
-
-    <p>
-    If you want to live your life in a creative way, as an artist, you have to not look back too much. You have to be willing to take whatever you’ve done and whoever you were and throw them away.
-    </p>
-
-    <p style="text-align:right;">
-    Steve Jobs
-    </p>
-
-</div> -->
-
-<!-- Handle Language Change -->
-<script type="text/javascript">
-    var $zh = document.querySelector(".zh");
-    var $en = document.querySelector(".en");
-    function onLanChange(index){
-        if(index == 0){
-            $zh.style.display = "block";
-            $en.style.display = "none";
-        }else{
-            $en.style.display = "block";
-            $zh.style.display = "none";
-        }
-    }
-    onLanChange(0);
-</script>
-
-
-
-
-<!-- 多说评论框 start -->
-<div class="comment">
-    <div class="ds-thread"
-    
-        data-thread-id="1187623191091085319"
-    
-
-    data-title="About"
-    data-url="http://localhost:4000/about/"></div>
+<p>LinkedHashMap的方案虽然简便，但是它毕竟不是基本的数据结构，从算法设计的角度来说，我们还是需要一个使用基本数据结构来实现的方案。参考LinkedHashMap类的内部实现原理，我们可以通过哈希表+双链表的组合来实现LRU Cache。由哈希表来实现根据键值对（值为双链表结点）随机存取，由双链表来维护缓存的命中情况：最近使用的缓存在链表头结点，最久未使用的缓存在链表尾结点，当缓存被命中时，将其移至链表头结点，当缓存大小超出容量时，直接删除链表尾结点。代码实现如下：</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>public class LRUCache {  
+  
+    class CacheNode {  
+        public int key;  
+        public int value;  
+        public CacheNode pre;  
+        public CacheNode next;  
+  
+        public CacheNode(int key, int value) {  
+            this.key = key;  
+            this.value = value;  
+        }  
+    }  
+  
+    private int capacity;  
+    private int size = 0;  
+    private HashMap&lt;Integer, CacheNode&gt; map = new HashMap&lt;&gt;();  
+    private CacheNode head;  
+    private CacheNode tail;  
+  
+    public LRUCache(int capacity) {  
+        this.capacity = capacity;  
+        head = null;  
+        tail = null;  
+    }  
+  
+    private void removeNode(CacheNode node) {  
+        CacheNode pre = node.pre;  
+        CacheNode next = node.next;  
+        if (pre != null) {  
+            pre.next = next;  
+        } else {  
+            head = next;  
+        }  
+        if (next != null) {  
+            next.pre = pre;  
+        } else {  
+            tail = pre;  
+        }  
+    }  
+  
+    private void setHead(CacheNode node) {  
+        node.next = head;  
+        node.pre = null;  
+        if (head != null) {  
+            head.pre = node;  
+        }  
+        head = node;  
+        if (tail == null) {  
+            tail = node;  
+        }  
+    }  
+  
+    public void set(int key, int value) {  
+        if (map.containsKey(key)) {  
+            CacheNode oldNode = map.get(key);  
+            oldNode.value = value;  
+            removeNode(oldNode);  
+            setHead(oldNode);  
+        } else {  
+            CacheNode newNode = new CacheNode(key, value);  
+            if (size &lt; capacity) {  
+                size++;  
+            } else {  
+                map.remove(tail.key);  
+                tail = tail.pre;  
+                if (tail != null) {  
+                    tail.next = null;  
+                }  
+            }  
+            setHead(newNode);  
+            map.put(key, newNode);  
+        }  
+    }  
+  
+    public int get(int key) {  
+        if (map.containsKey(key)) {  
+            CacheNode lastest = map.get(key);  
+            removeNode(lastest);  
+            setHead(lastest);  
+            return lastest.value;  
+        } else {  
+            return -1;  
+        }  
+    }  
+  
+}  
+</code></pre>
 </div>
-<!-- 多说评论框 end -->
 
-<!-- Duoshuo hacking -->
-<input id="dsUser" type="hidden" value="wzystal"  />
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="/2014/06/10/lru-cache"
+                    data-title="LeetCode | LRU Cache"
+                    data-url="http://localhost:4000/2014/06/10/lru-cache/"
+                    data-images="http://localhost:4000/img/post-bg-leetcode.jpg"
+                    data-content="原题描述
+
+  Design and implement a data structure for Least Recently Used (LRU) c... | 王昭阳的部落格 | Wzystal's Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2014/06/13/binary-tree-traversal/" data-toggle="tooltip" data-placement="top" title="LeetCode | Binary Tree traversal">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="/2014/06/10/lru-cache"
+                        data-title="LeetCode | LRU Cache"
+                        data-url="http://localhost:4000/2014/06/10/lru-cache/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+                				<a href="/tags/#算法" title="算法" rel="9">
+                                    算法
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#LeetCode" title="LeetCode" rel="9">
+                                    LeetCode
+                                </a>
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="https://github.com/wzystal/">wzystal</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
 
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
-var duoshuoQuery = {short_name:"wzystal"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-    </script>
-<!-- 多说公共JS代码 end -->
+    // dynamic User by Hux
+    var _user = 'wzystal';
 
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<!-- <script type="text/javascript">
-    // dynamic User hacking by Hux
-    var _user = document.getElementById('dsUser').value;
     // duoshuo comment query.
     var duoshuoQuery = {short_name: _user };
     (function() {
@@ -249,120 +422,48 @@ var duoshuoQuery = {short_name:"wzystal"};
          || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
 </script>
- --><!-- 多说公共JS代码 end -->
+<!-- 多说公共JS代码 end -->
 
 
 
 
 
-    		</div>
-    <!-- Sidebar Container -->
-            <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-                <!-- Featured Tags -->
-                
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        
-                            
-                                <a href="/tags/#算法" title="算法" rel="9">
-                                    算法
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#LeetCode" title="LeetCode" rel="9">
-                                    LeetCode
-                                </a>
-                            
-                        
-                            
-                        
-                    </div>
-                </section>
-                
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="https://avatars0.githubusercontent.com/u/3941400?v=3&amp;s=460" />
-                        
-                        
-                            <p>Never say never.</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
 
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/wzystal">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
-                            <!--  -->
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/wzystal">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="http://weibo.com/wzystal">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://www.facebook.com/wzystal">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
-                <!-- Friends Blog -->
-                
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    
-                        <li><a href="https://github.com/wzystal/">wzystal</a></li>
-                    
-                </ul>
-                
-    		</div>
-        
-	</div>
-</div>
 
 
     <!-- Footer -->

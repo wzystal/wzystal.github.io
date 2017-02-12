@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>我的第一篇博客 - 王昭阳的部落格 | Wzystal's Blog</title>
+    <title>LeetCode | Single Number II - 王昭阳的部落格 | Wzystal's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/2017/02/12/test-blog/">
+    <link rel="canonical" href="http://localhost:4000/2014/07/14/leecode-single-number-ii/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -125,12 +125,12 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-2016-2017.png" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-leetcode.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/post-bg-2016-2017.png')
+        background-image: url('/img/post-bg-leetcode.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -140,15 +140,17 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#技术" title="技术">技术</a>
+                        <a class="tag" href="/tags/#算法" title="算法">算法</a>
+                        
+                        <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                     </div>
-                    <h1>我的第一篇博客</h1>
+                    <h1>LeetCode | Single Number II</h1>
                     
                     
-                    <h2 class="subheading">我的第一篇博客</h2>
+                    <h2 class="subheading">Given an array of integers, every element appears three times except for one. Find that single one.</h2>
                     
-                    <span class="meta">Posted by wzystal on February 12, 2017</span>
+                    <span class="meta">Posted by wzystal on July 14, 2014</span>
                 </div>
             </div>
         </div>
@@ -166,7 +168,85 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<p>hello，大家好，这是一篇测试博客！</p>
+				<h3 id="原题描述"><a href="https://oj.leetcode.com/problems/single-number-ii/">原题描述</a></h3>
+<blockquote>
+  <p>Given an array of integers, every element appears three times except for one. Find that single one.</p>
+</blockquote>
+
+<h3 id="解题思路">解题思路</h3>
+<ul>
+  <li>方法1<br />
+  通过一个HashMap来统计数字出现的次数，如果数字出现次数达到3，则将其移出HashMap，那么最终剩下的即为只出现过一次的那个数字。</li>
+  <li>方法2<br />
+  将数字表示为32位二进制数的形式，那么每个数字就等价于：32位二进制中，某些位的值为1。将这些数字按位相加，每一位统计1出现的次数并对3取余，那么最终的结果即为只出现过一次的那个数字。</li>
+</ul>
+
+<p>方法1和方法2都只需要O(N)的时间复杂度，但是方法1的空间复杂度为O(N)，方法2的空间复杂度虽然为O(1)，但是需要开辟一个大小32的整型数组。那么，不需要额外的空间，是否可以实现呢？
+  答案是肯定的：参考<a href="http://www.cnblogs.com/daijinqiao/p/3352893.html">http://www.cnblogs.com/daijinqiao/p/3352893.html</a></p>
+
+<h3 id="实现代码">实现代码</h3>
+<div class="highlighter-rouge"><pre class="highlight"><code>/**
+ * LeetCode | Single Number
+ * @author wzystal
+ */
+public class Solution {
+	// Given an array of integers, every element appears three times except for one. Find that single one.
+	// 时间复杂度O(N),空间复杂度O(N)
+	public static int singleNumber1(int[] A) {
+		Map&lt;Integer, Integer&gt; map = new HashMap&lt;Integer, Integer&gt;();
+		int len = A.length;
+		for (int i = 0; i &lt; len; i++) {
+			if (map.containsKey(A[i])) {
+				int count = map.get(A[i]);
+				if (count == 2) {
+					map.remove(A[i]);
+				} else {
+					map.put(A[i], ++count);
+				}
+			} else {
+				map.put(A[i], 1);
+			}
+		}
+		return map.keySet().iterator().next();
+	}
+	
+	// Given an array of integers, every element appears three times except for one. Find that single one.
+	// 时间复杂度O(N),空间复杂度O(1),但是需要开辟一个大小为32的整型数组
+	public static int singleNumber2(int[] A) {
+		if (A.length == 0)
+			return 0;
+		int[] bits = new int[32];
+		int result = 0;
+		for (int i = 0; i &lt; 32; i++) {
+			for (int j = 0; j &lt; A.length; j++) {
+				if (((A[j] &gt;&gt; i) &amp; 1) == 1) {
+					bits[i] = (bits[i] + 1) % 3;
+				}
+			}
+			result |= (bits[i] &lt;&lt; i);
+		}
+		return result;
+	}
+	
+	// Given an array of integers, every element appears three times except for one. Find that single one.
+	// 时间复杂度O(N),空间复杂度O(1)
+	public static int singleNumber3(int[] A) {
+		int len = A.length;
+		if (len == 0)
+			return 0;
+		int ones = 0, twos = 0, threes = 0;
+		for (int i = 0; i &lt; len; i++) {
+			twos |= (ones &amp; A[i]);
+			ones ^= A[i];
+			threes = ~(ones &amp; twos);
+			ones &amp;= threes;
+			twos &amp;= threes;
+		}
+		return ones;
+	}
+}
+</code></pre>
+</div>
 
 
 
@@ -177,13 +257,13 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2017/02/12/test-blog"
-                    data-title="我的第一篇博客"
-                    data-url="http://localhost:4000/2017/02/12/test-blog/"
-                    data-images="http://localhost:4000/img/post-bg-2016-2017.png"
-                    data-content="hello，大家好，这是一篇测试博客！
+                    data-thread-key="/2014/07/14/leecode-single-number-ii"
+                    data-title="LeetCode | Single Number II"
+                    data-url="http://localhost:4000/2014/07/14/leecode-single-number-ii/"
+                    data-images="http://localhost:4000/img/post-bg-leetcode.jpg"
+                    data-content="原题描述
 
- | 王昭阳的部落格 | Wzystal's Blog " >
+  Given an array of integers, every element appears three times except ... | 王昭阳的部落格 | Wzystal's Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -203,9 +283,13 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2017/02/11/new-blog/" data-toggle="tooltip" data-placement="top" title="2017，新博客，心启航！">&larr; Previous Post</a>
+                        <a href="/2014/07/14/leecode-single-number/" data-toggle="tooltip" data-placement="top" title="LeetCode | Single Number">&larr; Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/2017/02/11/new-blog/" data-toggle="tooltip" data-placement="top" title="2017，新博客，心启航！">Next Post &rarr;</a>
+                    </li>
                     
                 </ul>
 
@@ -214,9 +298,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2017/02/12/test-blog"
-                        data-title="我的第一篇博客"
-                        data-url="http://localhost:4000/2017/02/12/test-blog/" >
+                        data-thread-key="/2014/07/14/leecode-single-number-ii"
+                        data-title="LeetCode | Single Number II"
+                        data-url="http://localhost:4000/2014/07/14/leecode-single-number-ii/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -239,6 +323,16 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
         				
+                            
+                				<a href="/tags/#算法" title="算法" rel="9">
+                                    算法
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#LeetCode" title="LeetCode" rel="9">
+                                    LeetCode
+                                </a>
                             
         				
                             

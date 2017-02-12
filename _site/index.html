@@ -154,28 +154,6 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2017/02/12/test-blog/">
-        <h2 class="post-title">
-            我的第一篇博客
-        </h2>
-        
-        <h3 class="post-subtitle">
-            我的第一篇博客
-        </h3>
-        
-        <div class="post-content-preview">
-            hello，大家好，这是一篇测试博客！
-
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by wzystal on February 12, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
     <a href="/2017/02/11/new-blog/">
         <h2 class="post-title">
             2017，新博客，心启航！
@@ -205,6 +183,261 @@
 </div>
 <hr>
 
+<div class="post-preview">
+    <a href="/2014/07/14/leecode-single-number-ii/">
+        <h2 class="post-title">
+            LeetCode | Single Number II
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Given an array of integers, every element appears three times except for one. Find that single one.
+        </h3>
+        
+        <div class="post-content-preview">
+            原题描述
+
+  Given an array of integers, every element appears three times except for one. Find that single one.
+
+
+解题思路
+
+  方法1
+  通过一个HashMap来统计数字出现的次数，如果数字出现次数达到3，则将其移出HashMap，那么最终剩下的即为只出现过一次的那个数字。
+  方法...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by wzystal on July 14, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/07/14/leecode-single-number/">
+        <h2 class="post-title">
+            LeetCode | Single Number
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Given an array of integers, every element appears twice except for one. Find that single one.
+        </h3>
+        
+        <div class="post-content-preview">
+            原题描述
+
+  Given an array of integers, every element appears twice except for one. Find that single one.
+
+
+解题思路
+可以利用异或运算来实现。关于异或运算的几个法则：
+
+  a ^ a = 0;
+a ^ 0 = a;
+a ^ b = b ^ a ;
+
+
+实现代码
+/**
+ * LeetCode...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by wzystal on July 14, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/07/14/leecode-copy-list-with-random-pointer/">
+        <h2 class="post-title">
+            LeetCode | Copy List with Random Pointer
+        </h2>
+        
+        <h3 class="post-subtitle">
+            A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null. Return a deep copy of the list.
+        </h3>
+        
+        <div class="post-content-preview">
+            原题描述
+
+  A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
+Return a deep copy of the list.
+
+
+解题思路
+本题要复制的对象是带随机指针的单链表...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by wzystal on July 14, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/07/02/word-break/">
+        <h2 class="post-title">
+            LeetCode | Word Break
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+        </h3>
+        
+        <div class="post-content-preview">
+            原题描述
+
+  Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+
+For example, given
+s = “leetcode”,
+dict =...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by wzystal on July 2, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/07/02/word-break-ii/">
+        <h2 class="post-title">
+            LeetCode | Word Break II
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.
+        </h3>
+        
+        <div class="post-content-preview">
+            原题描述
+
+  Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.
+
+
+Return all such possible sentences.
+
+For example, give...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by wzystal on July 2, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/20/linked-list-cycle/">
+        <h2 class="post-title">
+            LeetCode | Linked List Cycle
+        </h2>
+        
+        <h3 class="post-subtitle">
+            判断一个单链表是否有环，若有环的话，返回环的入口点。空间复杂度为O(1)
+        </h3>
+        
+        <div class="post-content-preview">
+            原题描述
+
+  判断一个单链表是否有环，若有环的话，返回环的入口点。空间复杂度为O(1)。
+
+
+解题思路
+快慢指针法。慢指针步长为1，快指针步长为2，两个指针同时从头结点开始扫描，若单链表存在环，则两个指针必定会相遇，而且是在慢指针遍历完环之前。原理解析可以参考：http://blog.csdn.net/loveyou426/article/details/7927297。
+
+那么环的入口点...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by wzystal on June 20, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/20/reorder-list/">
+        <h2 class="post-title">
+            LeetCode | Reorder List
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Given a singly linked list L: L0→L1→…→Ln-1→Ln, reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→… You must do this in-place without altering the nodes' values.
+        </h3>
+        
+        <div class="post-content-preview">
+            原题描述
+
+  Given a singly linked list L: L0→L1→…→Ln-1→Ln,
+reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
+You must do this in-place without altering the nodes’ values.
+For example, 
+Given {1,2,3,4}, reorder it...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by wzystal on June 20, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/13/binary-tree-traversal/">
+        <h2 class="post-title">
+            LeetCode | Binary Tree traversal
+        </h2>
+        
+        <h3 class="post-subtitle">
+            分别使用递归、非递归方法，实现二叉树的先序、中序和后序遍历。
+        </h3>
+        
+        <div class="post-content-preview">
+            原题描述
+
+  分别使用递归、非递归方法，实现二叉树的先序、中序和后序遍历。
+
+
+解题思路
+使用递归方法实现二叉树的遍历，简单至极，此处不再赘述。
+对于非递归方法，可以采用栈这种“先进后出”的数据结构，然后根据不同遍历方法的特点，画图分析其入栈、出栈的时机，最后将其转化成代码实现。三种遍历方法的实现流程如下：
+
+先序遍历
+
+  
+    根结点入栈；
+    对于任一栈顶结点P，访问P并将其...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by wzystal on June 13, 2014
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2014/06/10/lru-cache/">
+        <h2 class="post-title">
+            LeetCode | LRU Cache
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.
+        </h3>
+        
+        <div class="post-content-preview">
+            原题描述
+
+  Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.
+get(key) - Get the value (will always be positive) of the...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by wzystal on June 10, 2014
+    </p>
+</div>
+<hr>
+
 
 <!-- Pager -->
 
@@ -226,6 +459,16 @@
                     <div class="tags">
                         
                             
+                                <a href="/tags/#算法" title="算法" rel="9">
+                                    算法
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#LeetCode" title="LeetCode" rel="9">
+                                    LeetCode
+                                </a>
+                            
                         
                             
                         
@@ -246,6 +489,19 @@
                         <!-- SNS Link -->
                         <ul class="list-inline">
                             
+
+                            
+                            <li>
+                                <a target="_blank" href="https://github.com/wzystal">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            
+
+                            <!--  -->
                             
                             
                             <li>
@@ -273,16 +529,6 @@
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
                                         <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/wzystal">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
                                     </span>
                                 </a>
                             </li>

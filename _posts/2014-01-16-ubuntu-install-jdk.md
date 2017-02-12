@@ -21,7 +21,7 @@ tags:
  对于JDK7版本（tar.gz文件），可直接解压得到JDK文件；
  对于JDK6版本（bin文件），需要赋予jdk-6u45-linux-x64.bin执行权限，然后执行该文件来得到JDK文件：
 ```
-$ sudo chmod +x  jdk-6u45-linux-x64.bin
+$ sudo chmod +x  jdk-6u45-linux-x64.bin  
 $ sudo ./jdk-6u45-linux-x64.bin
 ```
 得到JDK文件以后即可复制到相关目录：`$ sudo cp -r jdk1.6.0_45 /usr/local/`
@@ -34,15 +34,15 @@ $ sudo ./jdk-6u45-linux-x64.bin
      
 4. 修改系统的默认JDK版本为当前版本。
 ```
-$ sudo update-alternatives --install /usr/bin/java java /usr/local/jdk1.6.0_45/bin/java 300
-$ sudo update-alternatives --install /usr/bin/javac javac /usr/local/jdk1.6.0_45/bin/javac 300
-$ sudo update-alternatives --config java  
+$ sudo update-alternatives --install /usr/bin/java java /usr/local/jdk1.6.0_45/bin/java 300  
+$ sudo update-alternatives --install /usr/bin/javac javac /usr/local/jdk1.6.0_45/bin/javac 300  
+$ sudo update-alternatives --config java   
 $ sudo update-alternatives --config javac  
 ```
 5. 修改完毕以后，在终端输入：java -version，出现对应的Java版本信息，说明JDK的安装和配置成功了！
 以jdk1.6.0_45为例：     
 ```
-java version "1.6.0_45"
-Java(TM) SE Runtime Environment (build 1.6.0_45-b06)
-Java HotSpot(TM) 64-Bit Server VM (build 20.45-b01, mixed mode)
+java version "1.6.0_45"  
+Java(TM) SE Runtime Environment (build 1.6.0_45-b06)  
+Java HotSpot(TM) 64-Bit Server VM (build 20.45-b01, mixed mode)  
 ```

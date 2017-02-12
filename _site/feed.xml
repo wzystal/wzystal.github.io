@@ -3,11 +3,25 @@
   <channel>
     <title>Wzystal's Blog</title>
     <description></description>
-    <link>http://localhost:4000/wzystal/</link>
-    <atom:link href="http://localhost:4000/wzystal/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 12 Feb 2017 03:46:26 +0800</pubDate>
-    <lastBuildDate>Sun, 12 Feb 2017 03:46:26 +0800</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 12 Feb 2017 18:28:00 +0800</pubDate>
+    <lastBuildDate>Sun, 12 Feb 2017 18:28:00 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>我的第一篇博客</title>
+        <description>&lt;p&gt;hello，大家好，这是一篇测试博客！&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 12 Feb 2017 17:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/02/12/test-blog/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/02/12/test-blog/</guid>
+        
+        <category>技术</category>
+        
+        
+      </item>
     
       <item>
         <title>2017，新博客，心启航！</title>
@@ -22,9 +36,9 @@
 &lt;p&gt;2017，新博客，心启航～&lt;/p&gt;
 
 </description>
-        <pubDate>Sat, 11 Feb 2017 07:00:00 +0800</pubDate>
-        <link>http://localhost:4000/wzystal/2017/02/11/new-blog/</link>
-        <guid isPermaLink="true">http://localhost:4000/wzystal/2017/02/11/new-blog/</guid>
+        <pubDate>Sat, 11 Feb 2017 23:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/02/11/new-blog/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/02/11/new-blog/</guid>
         
         <category>生活</category>
         

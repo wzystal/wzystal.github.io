@@ -182,7 +182,7 @@
   <li>下载好对应的JDK版本以后，需要对其中的JDK文件进行提取，然后复制到合适的目录（建议放到/usr/local/目录下，该目录一般用于存储手动安装的程序）。
  对于JDK7版本（tar.gz文件），可直接解压得到JDK文件；
  对于JDK6版本（bin文件），需要赋予jdk-6u45-linux-x64.bin执行权限，然后执行该文件来得到JDK文件：
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ sudo chmod +x  jdk-6u45-linux-x64.bin
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ sudo chmod +x  jdk-6u45-linux-x64.bin  
 $ sudo ./jdk-6u45-linux-x64.bin
 </code></pre>
     </div>
@@ -196,18 +196,18 @@ $ sudo ./jdk-6u45-linux-x64.bin
 使用env命令可以查看所有的环境变量，输入$ env ，如果结果中有JAVA_HOME=/usr/local/jdk1.6.0_45，说明配置成功！</p>
   </li>
   <li>修改系统的默认JDK版本为当前版本。
-    <div class="highlighter-rouge"><pre class="highlight"><code>$ sudo update-alternatives --install /usr/bin/java java /usr/local/jdk1.6.0_45/bin/java 300
-$ sudo update-alternatives --install /usr/bin/javac javac /usr/local/jdk1.6.0_45/bin/javac 300
-$ sudo update-alternatives --config java  
+    <div class="highlighter-rouge"><pre class="highlight"><code>$ sudo update-alternatives --install /usr/bin/java java /usr/local/jdk1.6.0_45/bin/java 300  
+$ sudo update-alternatives --install /usr/bin/javac javac /usr/local/jdk1.6.0_45/bin/javac 300  
+$ sudo update-alternatives --config java   
 $ sudo update-alternatives --config javac  
 </code></pre>
     </div>
   </li>
   <li>修改完毕以后，在终端输入：java -version，出现对应的Java版本信息，说明JDK的安装和配置成功了！
 以jdk1.6.0_45为例：
-    <div class="highlighter-rouge"><pre class="highlight"><code>java version "1.6.0_45"
-Java(TM) SE Runtime Environment (build 1.6.0_45-b06)
-Java HotSpot(TM) 64-Bit Server VM (build 20.45-b01, mixed mode)
+    <div class="highlighter-rouge"><pre class="highlight"><code>java version "1.6.0_45"  
+Java(TM) SE Runtime Environment (build 1.6.0_45-b06)  
+Java HotSpot(TM) 64-Bit Server VM (build 20.45-b01, mixed mode)  
 </code></pre>
     </div>
   </li>

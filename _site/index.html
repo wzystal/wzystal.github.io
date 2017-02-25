@@ -154,6 +154,35 @@
             ">
     			
 <div class="post-preview">
+    <a href="/2017/02/25/android-art-04/">
+        <h2 class="post-title">
+            《Android开发艺术探索读书笔记》-View的工作原理
+        </h2>
+        
+        <h3 class="post-subtitle">
+            探一探View的工作原理
+        </h3>
+        
+        <div class="post-content-preview">
+            1. 初识ViewRoot和DecorView
+
+  ViewRoot扮演的是View的管理者角色，负责完成View的新建、更新和删除等操作。在代码层面，由ViewRootImpl类具体实现。
+
+
+
+  View的绘制流程，具体实现在ViewRootImpl.performTraversals()中，代码十分复杂，主要分为measure、layout和draw三大步骤，需要花时间研读。
+
+
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by wzystal on February 25, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2017/02/11/new-blog/">
         <h2 class="post-title">
             2017，新博客，心启航！
@@ -415,29 +444,6 @@ Given {1,2,3,4}, reorder it...
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2014/06/10/lru-cache/">
-        <h2 class="post-title">
-            LeetCode | LRU Cache
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.
-        </h3>
-        
-        <div class="post-content-preview">
-            原题描述
-
-  Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.
-get(key) - Get the value (will always be positive) of the...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by wzystal on June 10, 2014
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -472,6 +478,10 @@ get(key) - Get the value (will always be positive) of the...
                             
                         
                             
+                                <a href="/tags/#Android" title="Android" rel="2">
+                                    Android
+                                </a>
+                            
                         
                             
                                 <a href="/tags/#算法" title="算法" rel="9">
@@ -483,6 +493,8 @@ get(key) - Get the value (will always be positive) of the...
                                 <a href="/tags/#LeetCode" title="LeetCode" rel="9">
                                     LeetCode
                                 </a>
+                            
+                        
                             
                         
                             

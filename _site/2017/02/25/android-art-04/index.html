@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>LeetCode | Reorder List - 王昭阳的部落格 | Wzystal's Blog</title>
+    <title>《Android开发艺术探索读书笔记》-View的工作原理 - 王昭阳的部落格 | Wzystal's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/2014/06/20/reorder-list/">
+    <link rel="canonical" href="http://localhost:4000/2017/02/25/android-art-04/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -125,12 +125,12 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-leetcode.jpg" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-android-logo.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/post-bg-leetcode.jpg')
+        background-image: url('/img/post-bg-android-logo.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -140,17 +140,17 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#算法" title="算法">算法</a>
+                        <a class="tag" href="/tags/#读书笔记" title="读书笔记">读书笔记</a>
                         
-                        <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        <a class="tag" href="/tags/#Android" title="Android">Android</a>
                         
                     </div>
-                    <h1>LeetCode | Reorder List</h1>
+                    <h1>《Android开发艺术探索读书笔记》-View的工作原理</h1>
                     
                     
-                    <h2 class="subheading">Given a singly linked list L: L0→L1→…→Ln-1→Ln, reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→… You must do this in-place without altering the nodes' values.</h2>
+                    <h2 class="subheading">探一探View的工作原理</h2>
                     
-                    <span class="meta">Posted by wzystal on June 20, 2014</span>
+                    <span class="meta">Posted by wzystal on February 25, 2017</span>
                 </div>
             </div>
         </div>
@@ -168,81 +168,48 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h3 id="原题描述"><a href="https://oj.leetcode.com/problems/reorder-list/">原题描述</a></h3>
+				<h3 id="1-初识viewroot和decorview">1. 初识ViewRoot和DecorView</h3>
+<ul>
+  <li>ViewRoot扮演的是View的管理者角色，负责完成View的新建、更新和删除等操作。在代码层面，由ViewRootImpl类具体实现。</li>
+</ul>
+
 <blockquote>
-  <p>Given a singly linked list L: L0→L1→…→Ln-1→Ln,
-reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…<br />
-You must do this in-place without altering the nodes’ values.<br />
-For example, <br />
-Given {1,2,3,4}, reorder it to {1,4,2,3}.</p>
+  <p>View的绘制流程，具体实现在ViewRootImpl.performTraversals()中，代码十分复杂，主要分为measure、layout和draw三大步骤，需要花时间研读。</p>
 </blockquote>
 
-<h3 id="解题思路">解题思路</h3>
-<ol>
-  <li>将单链表从中点处拆分成两部分：head和middle，可以采用快慢指针的方法实现；</li>
-  <li>将middle部分单链表反转；</li>
-  <li>穿插式合并head和middle两部分。</li>
-</ol>
+<ul>
+  <li>DecorView是根视图，包含上下两部分：标题栏和内容栏，其中内容栏的id是固定的android.R.id.content，我们在Activity里调用setContentView的时候，其实就是在设置这个内容栏的布局。在代码层面，DecorView是PhoneWindow的一个内部类，继承自FrameLayout。</li>
+</ul>
 
-<h3 id="实现代码">实现代码</h3>
-<div class="highlighter-rouge"><pre class="highlight"><code>//Reorder List  
-public class Solution {  
-    class ListNode {  
-        int val;  
-        ListNode next;  
-  
-        public ListNode(int val) {  
-            this.val = val;  
-            next = null;  
-        }  
-    }  
-  
-    public void reorderList(ListNode head) {  
-        if (head == null || head.next == null)  
-            return;  
-        ListNode fast = head, slow = head;  
-        while (fast != null &amp;&amp; fast.next != null &amp;&amp; fast.next.next != null) {  
-            slow = slow.next;  
-            fast = fast.next.next;  
-        }  
-        ListNode middle = slow.next;  
-        slow.next = null;  
-        middle = reverseList(middle);  
-        ListNode n1 = head, n2 = middle;  
-        mergeList(n1, n2);  
-    }  
-  
-    //反转单链表  
-    private ListNode reverseList(ListNode head) {  
-        if (head == null || head.next == null)  
-            return head;  
-        ListNode pre = head, cur = head.next;  
-        while (cur != null) {  
-            ListNode temp = cur.next;  
-            cur.next = pre;  
-            pre = cur;  
-            cur = temp;  
-        }  
-        head.next = null; //important!  
-        return pre;  
-    }  
-  
-    //穿插合并单链表  
-    private void mergeList(ListNode n1, ListNode n2) {  
-        ListNode t1, t2;  
-        while (n2 != null) {  
-            t1 = n1.next;  
-            t2 = n2.next;  
-            n1.next = n2;  
-            n2.next = t1;  
-            n1 = t1;  
-            n2 = t2;  
-        }  
-    }  
-}  
-</code></pre>
-</div>
+<h3 id="2-理解measurespec">2. 理解MeasureSpec</h3>
+<ul>
+  <li>
+    <p>一个MeasureSpec封装了父容器传递给子View的布局要求。在测量过程中，系统会根据MeasureSpec来测量View，这个MeasureSpec由View本身想要的布局参数，结合父容器的MeasureSpec来生成。</p>
+  </li>
+  <li>
+    <p>在代码层面，MeasureSpec由32位的int值来表示，其中高2位代表测量模式（SpecMode），低30位代表测量规格（SpecSize）。</p>
+  </li>
+  <li>测量模式有三种:</li>
+  <li>UNSPECIFIED。父容器不做任何限制，要多大就给多大，这种情况一般用于系统内部。</li>
+  <li>EXACTLY。父容器指定精确大小为SpecSize，这个SpecSize就是View的最终大小。该模式对应于布局中的match-parent或者具体数值。</li>
+  <li>
+    <p>AT_MOST。父容器指定大小上限为SpecSize，View的大小不能超过SpecSize，具体是什么值取决于View的具体实现（默认为SpecSize）。该模式对应于布局中的wrap-content。</p>
+  </li>
+  <li>对于子View，MeasureSpec由自身的布局参数和父容器的MeasureSpec共同决定，生成规则参见ViewGroup中的getChildMeasureSpec()，简单总结如下：</li>
+  <li>View的布局参数为match-parent时，生成View的MeasureSpec = 父容器SpecMode + parentSize</li>
+  <li>View的布局参数为wrap-content时，生成View的MeasureSpec = AT_MOST + parentSize</li>
+  <li>View的布局参数为固定宽高时，不论父容器的MeasureSpec是什么，生成View的MeasureSpec = EXACTLY + childSize</li>
+</ul>
 
+<h3 id="3-view的工作流程">3. View的工作流程</h3>
+<ul>
+  <li>
+    <p>如果是单个View，自身调用measure方法就可以完成测量；如果是ViewGroup，除了完成自身的测量过程外，还需要遍历调用所有子View的measure过程</p>
+  </li>
+  <li>代码层面，View测量时的方法调用链路：measure()-&gt;onMeasure()-&gt;getDefaultSize()。在getDefaultSize()中可以看到：</li>
+  <li>EXACTLY和AT_MOST模式下，View的测量宽高其实就等于SpecSize。</li>
+  <li>UNSPECIFIED模式下，View的测量宽高计算规则（以宽度为例）：如果View没有设置背景，测量宽度=minWidth；如果设置了背景，测量宽度=max(minWidth, 背景宽度)。</li>
+</ul>
 
 
                 <hr>
@@ -252,14 +219,13 @@ public class Solution {
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2014/06/20/reorder-list"
-                    data-title="LeetCode | Reorder List"
-                    data-url="http://localhost:4000/2014/06/20/reorder-list/"
-                    data-images="http://localhost:4000/img/post-bg-leetcode.jpg"
-                    data-content="原题描述
+                    data-thread-key="/2017/02/25/android-art-04"
+                    data-title="《Android开发艺术探索读书笔记》-View的工作原理"
+                    data-url="http://localhost:4000/2017/02/25/android-art-04/"
+                    data-images="http://localhost:4000/img/post-bg-android-logo.jpg"
+                    data-content="1. 初识ViewRoot和DecorView
 
-  Given a singly linked list L: L0→L1→…→Ln-1→Ln,
-reorder it to: L0→Ln→L... | 王昭阳的部落格 | Wzystal's Blog " >
+  ViewRoot扮演的是View的管理者角色，负责完成View的新建、更新和删除等操作。在代码层面，... | 王昭阳的部落格 | Wzystal's Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -279,13 +245,9 @@ reorder it to: L0→Ln→L... | 王昭阳的部落格 | Wzystal's Blog " >
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2014/06/13/binary-tree-traversal/" data-toggle="tooltip" data-placement="top" title="LeetCode | Binary Tree traversal">&larr; Previous Post</a>
+                        <a href="/2017/02/11/new-blog/" data-toggle="tooltip" data-placement="top" title="2017，新博客，心启航！">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2014/06/20/linked-list-cycle/" data-toggle="tooltip" data-placement="top" title="LeetCode | Linked List Cycle">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
@@ -294,9 +256,9 @@ reorder it to: L0→Ln→L... | 王昭阳的部落格 | Wzystal's Blog " >
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2014/06/20/reorder-list"
-                        data-title="LeetCode | Reorder List"
-                        data-url="http://localhost:4000/2014/06/20/reorder-list/" >
+                        data-thread-key="/2017/02/25/android-art-04"
+                        data-title="《Android开发艺术探索读书笔记》-View的工作原理"
+                        data-url="http://localhost:4000/2017/02/25/android-art-04/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->

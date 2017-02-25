@@ -5,9 +5,65 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 13 Feb 2017 17:16:00 +0800</pubDate>
-    <lastBuildDate>Mon, 13 Feb 2017 17:16:00 +0800</lastBuildDate>
+    <pubDate>Sun, 26 Feb 2017 00:09:54 +0800</pubDate>
+    <lastBuildDate>Sun, 26 Feb 2017 00:09:54 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
+    
+      <item>
+        <title>《Android开发艺术探索读书笔记》-View的工作原理</title>
+        <description>&lt;h3 id=&quot;1-初识viewroot和decorview&quot;&gt;1. 初识ViewRoot和DecorView&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;ViewRoot扮演的是View的管理者角色，负责完成View的新建、更新和删除等操作。在代码层面，由ViewRootImpl类具体实现。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;View的绘制流程，具体实现在ViewRootImpl.performTraversals()中，代码十分复杂，主要分为measure、layout和draw三大步骤，需要花时间研读。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DecorView是根视图，包含上下两部分：标题栏和内容栏，其中内容栏的id是固定的android.R.id.content，我们在Activity里调用setContentView的时候，其实就是在设置这个内容栏的布局。在代码层面，DecorView是PhoneWindow的一个内部类，继承自FrameLayout。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;2-理解measurespec&quot;&gt;2. 理解MeasureSpec&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;一个MeasureSpec封装了父容器传递给子View的布局要求。在测量过程中，系统会根据MeasureSpec来测量View，这个MeasureSpec由View本身想要的布局参数，结合父容器的MeasureSpec来生成。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在代码层面，MeasureSpec由32位的int值来表示，其中高2位代表测量模式（SpecMode），低30位代表测量规格（SpecSize）。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;测量模式有三种:&lt;/li&gt;
+  &lt;li&gt;UNSPECIFIED。父容器不做任何限制，要多大就给多大，这种情况一般用于系统内部。&lt;/li&gt;
+  &lt;li&gt;EXACTLY。父容器指定精确大小为SpecSize，这个SpecSize就是View的最终大小。该模式对应于布局中的match-parent或者具体数值。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;AT_MOST。父容器指定大小上限为SpecSize，View的大小不能超过SpecSize，具体是什么值取决于View的具体实现（默认为SpecSize）。该模式对应于布局中的wrap-content。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;对于子View，MeasureSpec由自身的布局参数和父容器的MeasureSpec共同决定，生成规则参见ViewGroup中的getChildMeasureSpec()，简单总结如下：&lt;/li&gt;
+  &lt;li&gt;View的布局参数为match-parent时，生成View的MeasureSpec = 父容器SpecMode + parentSize&lt;/li&gt;
+  &lt;li&gt;View的布局参数为wrap-content时，生成View的MeasureSpec = AT_MOST + parentSize&lt;/li&gt;
+  &lt;li&gt;View的布局参数为固定宽高时，不论父容器的MeasureSpec是什么，生成View的MeasureSpec = EXACTLY + childSize&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;3-view的工作流程&quot;&gt;3. View的工作流程&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果是单个View，自身调用measure方法就可以完成测量；如果是ViewGroup，除了完成自身的测量过程外，还需要遍历调用所有子View的measure过程&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;代码层面，View测量时的方法调用链路：measure()-&amp;gt;onMeasure()-&amp;gt;getDefaultSize()。在getDefaultSize()中可以看到：&lt;/li&gt;
+  &lt;li&gt;EXACTLY和AT_MOST模式下，View的测量宽高其实就等于SpecSize。&lt;/li&gt;
+  &lt;li&gt;UNSPECIFIED模式下，View的测量宽高计算规则（以宽度为例）：如果View没有设置背景，测量宽度=minWidth；如果设置了背景，测量宽度=max(minWidth, 背景宽度)。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Sat, 25 Feb 2017 23:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/02/25/android-art-04/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/02/25/android-art-04/</guid>
+        
+        <category>读书笔记</category>
+        
+        <category>Android</category>
+        
+        
+      </item>
     
       <item>
         <title>2017，新博客，心启航！</title>
@@ -748,153 +804,6 @@ public class Solution {
         <pubDate>Fri, 13 Jun 2014 09:02:00 +0800</pubDate>
         <link>http://localhost:4000/2014/06/13/binary-tree-traversal/</link>
         <guid isPermaLink="true">http://localhost:4000/2014/06/13/binary-tree-traversal/</guid>
-        
-        <category>算法</category>
-        
-        <category>LeetCode</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>LeetCode | LRU Cache</title>
-        <description>&lt;h3 id=&quot;原题描述&quot;&gt;原题描述&lt;/h3&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.&lt;br /&gt;
-get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.&lt;br /&gt;
-set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;解题思路&quot;&gt;解题思路&lt;/h3&gt;
-&lt;p&gt;题目要求算法能根据键值对随机存取缓存，我们很容易就能想到使用哈希表来实现。但是题目还要求缓存是LRU（Least Recently Used）形式的，即在更新缓存时采用最近最少使用原则，这就需要数据结构能记录缓存的命中情况：每次有缓存被命中都需要将其标记为最近使用，当缓存大小超出容量时，需要删除最久未被使用的缓存。&lt;br /&gt;
-在Java中，正好有这么一种哈希表，可以记录数据的访问顺序，它就是LinkedHashMap。借助于LinkedHashMap，我们可以很容易地实现LRU Cache。实现代码如下：&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import java.util.LinkedHashMap;  
-  
-public class LRUCache extends LinkedHashMap&amp;lt;Integer, Integer&amp;gt; {  
-    private int capacity;  
-  
-    public LRUCache1(int capacity) {  
-        super(capacity+1, 0.75f, true);  
-        this.capacity = capacity;  
-    }  
-  
-    @Override  
-    protected boolean removeEldestEntry(  
-            java.util.Map.Entry&amp;lt;Integer, Integer&amp;gt; eldest) {  
-        return size() &amp;gt; capacity; //当缓存大小超出容量时，移除最久未被使用的缓存  
-    }  
-  
-    public int get(int key) {  
-        return super.get(key) != null ? super.get(key) : -1;  
-    }  
-  
-    public void set(int key, int value) {  
-        super.put(key, value);  
-    }  
-  
-    public int size() {  
-        return super.size();  
-    }  
-  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;LinkedHashMap的方案虽然简便，但是它毕竟不是基本的数据结构，从算法设计的角度来说，我们还是需要一个使用基本数据结构来实现的方案。参考LinkedHashMap类的内部实现原理，我们可以通过哈希表+双链表的组合来实现LRU Cache。由哈希表来实现根据键值对（值为双链表结点）随机存取，由双链表来维护缓存的命中情况：最近使用的缓存在链表头结点，最久未使用的缓存在链表尾结点，当缓存被命中时，将其移至链表头结点，当缓存大小超出容量时，直接删除链表尾结点。代码实现如下：&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class LRUCache {  
-  
-    class CacheNode {  
-        public int key;  
-        public int value;  
-        public CacheNode pre;  
-        public CacheNode next;  
-  
-        public CacheNode(int key, int value) {  
-            this.key = key;  
-            this.value = value;  
-        }  
-    }  
-  
-    private int capacity;  
-    private int size = 0;  
-    private HashMap&amp;lt;Integer, CacheNode&amp;gt; map = new HashMap&amp;lt;&amp;gt;();  
-    private CacheNode head;  
-    private CacheNode tail;  
-  
-    public LRUCache(int capacity) {  
-        this.capacity = capacity;  
-        head = null;  
-        tail = null;  
-    }  
-  
-    private void removeNode(CacheNode node) {  
-        CacheNode pre = node.pre;  
-        CacheNode next = node.next;  
-        if (pre != null) {  
-            pre.next = next;  
-        } else {  
-            head = next;  
-        }  
-        if (next != null) {  
-            next.pre = pre;  
-        } else {  
-            tail = pre;  
-        }  
-    }  
-  
-    private void setHead(CacheNode node) {  
-        node.next = head;  
-        node.pre = null;  
-        if (head != null) {  
-            head.pre = node;  
-        }  
-        head = node;  
-        if (tail == null) {  
-            tail = node;  
-        }  
-    }  
-  
-    public void set(int key, int value) {  
-        if (map.containsKey(key)) {  
-            CacheNode oldNode = map.get(key);  
-            oldNode.value = value;  
-            removeNode(oldNode);  
-            setHead(oldNode);  
-        } else {  
-            CacheNode newNode = new CacheNode(key, value);  
-            if (size &amp;lt; capacity) {  
-                size++;  
-            } else {  
-                map.remove(tail.key);  
-                tail = tail.pre;  
-                if (tail != null) {  
-                    tail.next = null;  
-                }  
-            }  
-            setHead(newNode);  
-            map.put(key, newNode);  
-        }  
-    }  
-  
-    public int get(int key) {  
-        if (map.containsKey(key)) {  
-            CacheNode lastest = map.get(key);  
-            removeNode(lastest);  
-            setHead(lastest);  
-            return lastest.value;  
-        } else {  
-            return -1;  
-        }  
-    }  
-  
-}  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-</description>
-        <pubDate>Tue, 10 Jun 2014 11:07:00 +0800</pubDate>
-        <link>http://localhost:4000/2014/06/10/lru-cache/</link>
-        <guid isPermaLink="true">http://localhost:4000/2014/06/10/lru-cache/</guid>
         
         <category>算法</category>
         

@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>LeetCode | Copy List with Random Pointer - 王昭阳的部落格 | Wzystal's Blog</title>
+    <title>安卓应用角标那些事儿 - 王昭阳的部落格 | Wzystal's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/2014/07/14/leecode-copy-list-with-random-pointer/">
+    <link rel="canonical" href="http://localhost:4000/2017/02/28/android-badger/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -125,12 +125,12 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-leetcode.jpg" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-android-logo.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/post-bg-leetcode.jpg')
+        background-image: url('/img/post-bg-android-logo.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -140,17 +140,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#算法" title="算法">算法</a>
-                        
-                        <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        <a class="tag" href="/tags/#Android" title="Android">Android</a>
                         
                     </div>
-                    <h1>LeetCode | Copy List with Random Pointer</h1>
+                    <h1>安卓应用角标那些事儿</h1>
                     
                     
-                    <h2 class="subheading">A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null. Return a deep copy of the list.</h2>
+                    <h2 class="subheading">聊一聊安卓应用角标那些事儿</h2>
                     
-                    <span class="meta">Posted by wzystal on July 14, 2014</span>
+                    <span class="meta">Posted by wzystal on February 28, 2017</span>
                 </div>
             </div>
         </div>
@@ -168,90 +166,96 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h3 id="原题描述"><a href="https://oj.leetcode.com/problems/copy-list-with-random-pointer/">原题描述</a></h3>
-<blockquote>
-  <p>A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
-Return a deep copy of the list.</p>
-</blockquote>
+				<h2 id="什么是应用角标">什么是应用角标？</h2>
+<p>    应用角标最开始是在ios系统中出现的，大概长这样：
+  <img src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/f5dcc2ce5a984d7ad62269e25ff51e42.jpg" alt="角标.jpg" /></p>
 
-<h3 id="解题思路">解题思路</h3>
-<p>本题要复制的对象是带随机指针的单链表，随机指针指向单链表的某一个结点。
-参考文章：<a href="http://blog.csdn.net/linhuanmars/article/details/22463599">http://blog.csdn.net/linhuanmars/article/details/22463599</a></p>
+<p>    不知道从什么时候开始，国内各大安卓手机系统上，也慢慢出现了应用角标的身影，到现在几乎成为了安卓系统的标配，发张图片让大家近距离感受一下：
+<img src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/8bcf1bf26d4409ba9e9a36a0f4d9a832.png" alt="screenshot.png" /></p>
 
-<h3 id="实现代码">实现代码</h3>
-<div class="highlighter-rouge"><pre class="highlight"><code>/** 
- * Copy List with Random Pointer 
- * @author wzystal 
- */  
-public class Solution {  
-    class RandomListNode {  
-        int label;  
-        RandomListNode next, random;  
-  
-        public RandomListNode(int x) {  
-            this.label = x;  
-        }  
-    }  
-  
-    // 时间复杂度O(n),空间复杂度O(n)  
-    public RandomListNode copyRandomList1(RandomListNode head) {  
-        if (head == null)  
-            return head;  
-        HashMap&lt;RandomListNode, RandomListNode&gt; map = new HashMap&lt;&gt;();  
-        RandomListNode newHead = new RandomListNode(head.label);  
-        map.put(head, newHead);  
-        RandomListNode pre = newHead;  
-        RandomListNode node = head.next;  
-        while (node != null) {  
-            RandomListNode newNode = new RandomListNode(node.label);  
-            map.put(node, newNode);  
-            pre.next = newNode;  
-            pre = pre.next;  
-            node = node.next;  
-        }  
-        node = head;  
-        RandomListNode copyNode = newHead;  
-        while (node != null) {  
-            copyNode.random = map.get(node.random);  
-            copyNode = copyNode.next;  
-            node = node.next;  
-        }  
-        return newHead;  
-    }  
-  
-    // 时间复杂度O(n),空间复杂度O(1)  
-    public RandomListNode copyRandomList2(RandomListNode head) {  
-        if (head == null)  
-            return head;  
-        RandomListNode node = head;  
-        while (node != null) {  
-            RandomListNode newNode = new RandomListNode(node.label);  
-            newNode.next = node.next;  
-            node.next = newNode;  
-            node = newNode.next;  
-        }  
-        node = head;  
-        while (node != null) {  
-            if (node.random != null) {  
-                node.next.random = node.random.next;  
-            }  
-            node = node.next.next;  
-        }  
-        RandomListNode newHead = head.next;  
-        node = head;  
-        while (node != null) {  
-            RandomListNode newNode = node.next;  
-            node.next = newNode.next;  
-            if (newNode.next != null) {  
-                newNode.next = newNode.next.next;  
-            }  
-            node = node.next;  
-        }  
-        return newHead;  
-    }  
-}  
+<p>    但是有一点要特别提一下，那就是<code class="highlighter-rouge">原生的Android系统，是不支持应用角标的</code>（这也是文章标题没有用“Android”的原因）。毕竟应用角标是一个带有争议的设计，有些强迫症用户对应用角标咬牙切齿，有些用户看不到应用角标又浑身痒痒，对于这一点我也只能说“仁者见仁，智者见智”吧。</p>
+
+<h2 id="如何支持应用角标">如何支持应用角标？</h2>
+<p>    安卓应用的角标是由Launcher支持的，而原生的Android系统Launcher并没有提供角标支持，所以各大手机厂商只能自己定制Launcher来实现，然后提供接口给外部使用。主流的做法都是通过广播Intent的形式来提供接口，不同的手机系统所支持的广播Intent也不太一样，所以需要针对不同的手机系统来做适配（恭喜你又成功跳入一个系统适配的坑！）。</p>
+
+<h2 id="角标开源库介绍">角标开源库介绍</h2>
+<p>    相信每个安卓开发者看到系统适配这几个字，都不会不由自主喷出一口老血。。。但是这次不用慌，因为已经有不怕死的家伙为我们造好了轮子，接下来就为大家隆重推出 <a href="https://github.com/leolin310148/ShortcutBadger">ShortcutBadger</a> （github大法好啊～真是好～）。这个开源库为我们封装了各种系统适配的细节，如文档所描述的，拥有了ShortcutBadger，你也就免除了以下系统适配的烦恼：
+  <img src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/989eca40f7a45f24740a613796610260.png" alt="角标02.png" /><br />
+    但在实际使用时，你会发现，图片很美，现实却很残酷！经不完全测试（原谅我的“不完全”，毕竟安卓机型碎片化太过严重），我发现这个开源库对于小米、华为、vivo和oppo等主流机型的支持都是有各种问题的，要么完全不奏效，要么就有bug。当然这个开源库也在不断完善，但是在它还不够稳定的情况下，建议大家还是先用来当备选方案，支持一些冷门机型可以，主流机型还是自己适配比较靠谱点。</p>
+
+<h2 id="特殊机型适配">特殊机型适配</h2>
+
+<h3 id="华为系列">华为系列</h3>
+<p>   传送门：<a href="http://developer.huawei.com/cn/consumer/wiki/index.php?title=%E5%8D%8E%E4%B8%BA%E6%A1%8C%E9%9D%A2%E8%A7%92%E6%A0%87%E4%BB%8B%E7%BB%8D">华为角标官方文档</a> <br />
+   按照华为官方文档的介绍，如果要获得应用角标支持，需要为应用申请华为证书，然后在“权签平台”下载开发者证书，再将开发者证书集成到应用中，整个流程跑下来还是很繁琐的。<br />
+   那么吃瓜群众肯定就要问了，有没有简单一点的方法呢？答案当然是有的！结合华为的《角标开发指导书》中的代码参考和亲身实践，我发现只需要其中两步，也可以实现华为角标支持（目前只验证了华为mate8 和华为 p7，其他机型手头暂时没有，欢迎大家补充）：</p>
+
+<p>1 在AndroidManifest.xml中申请华为角标权限</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" /&gt;
 </code></pre>
 </div>
+
+<p>2 参考以下代码，设置应用角标即可</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Bundle bundle = new Bundle();  
+bundle.putString("package", context.getPackageName());  
+String launchClassName = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName()).getComponent().getClassName();  
+bundle.putString("class", launchClassName);  
+bundle.putInt("badgenumber", msgCount); 
+context.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", null, bundle);  
+
+</code></pre>
+</div>
+
+<p>###小米系列
+   传送门：<a href="http://dev.xiaomi.com/docs/appsmarket/technical_docs/badge/">小米角标官方文档</a></p>
+
+<p>   在小米机型上，系统默认是支持应用角标的，不过支持的方式非常反人类，导致经常有用户来反馈说角标数字不对的问题。小米官方文档关于默认情况是这么描述的：</p>
+<blockquote>
+  <p>当app向通知栏发送了一条通知 （通知不带进度条并且用户可以删除的），那么桌面app icon角标就会显示1。此时app显示的角标数是和通知栏里app发送的通知数对应的，即向通知栏发送了多少通知就会显示多少角标。</p>
+</blockquote>
+
+<p>   那么吃瓜群众肯定又要问了，What are you talking about？！不要慌，我举一个例子大家就明白了，比如说千牛客户端，每收到一条未读的聊天消息，就会往通知栏发送一条通知（由于业务需要，通知id都是同一个），假如用户收到了5条未读消息，理论上来说千牛的角标数字应该显示5，但是在小米机型上你会惊奇地发现角标数字居然是1。这是因为默认情况下，应用的角标数字跟应用往通知栏发送的通知数（<code class="highlighter-rouge">注意！这个通知数是根据通知id来计算的</code>）相对应的，在刚刚说的场景中，<code class="highlighter-rouge">虽然千牛往通知栏发送了5条通知，但是按照通知id来统计时，对应的通知数就是1，所以角标数字也就是显示成1了</code>。</p>
+
+<p>   小米官方可能也意识到了，这个奇葩的设计会导致很多用户产生困惑，所以在官方文档中也提供了修改角标数的接口。不同于其他手机系统通过广播来修改角标，小米系统是通过反射机制来修改角标，关键代码参考如下：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Field field = notification.getClass().getDeclaredField("extraNotification");
+Object extraNotification = field.get(notification);
+Method method = extraNotification.getClass().getDeclaredMethod("setMessageCount", int.class);
+method.invoke(extraNotification, unreadCount);
+</code></pre>
+</div>
+
+<p>###OPPO系列
+   抱歉，没有发现官方文档。<br />
+   联系过oppo的开发者客服，客服MM表示：</p>
+<blockquote>
+  <p>oppo角标提醒目前只针对内部软件还有微信、QQ开放，其他的暂时无法提供</p>
+</blockquote>
+
+<p>   啊，多么痛的领悟～不过客服MM也及时发了一张好人卡：</p>
+<blockquote>
+  <p>后续应该会计划对其他应用开放的，敬请关注我们的开发平台</p>
+</blockquote>
+
+<p>   嗯，虽然被拒绝了，但是希望还是有的，那就继续关注<a href="http://open.oppomobile.com/admin">oppo开发者官网地址</a>吧～</p>
+
+<p>###VIVO系列 
+   抱歉，没有发现官方文档。<br />
+   不过最近有幸在网上看到一段代码，据说能支持vivo角标展示，抱着“死马当作活马医”的心态，我尝试了一把，最后发现居然奏效了。不多说了，贴代码共赏之：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Intent intent = new Intent("launcher.action.CHANGE_APPLICATION_NOTIFICATION_NUM");
+intent.putExtra("packageName", context.getPackageName());
+String launchClassName = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName()).getComponent().getClassName();
+intent.putExtra("className", launchClassName);
+intent.putExtra("notificationNum", msgCount);
+context.sendBroadcast(intent);
+</code></pre>
+</div>
+
+<p>###Sony系列
+   参考资料：<a href="https://developer.sony.com/2016/06/23/xperia-home-badge-api-now-publicly-available/">https://developer.sony.com/2016/06/23/xperia-home-badge-api-now-publicly-available/</a></p>
 
 
 
@@ -262,13 +266,15 @@ public class Solution {
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="/2014/07/14/leecode-copy-list-with-random-pointer"
-                    data-title="LeetCode | Copy List with Random Pointer"
-                    data-url="http://localhost:4000/2014/07/14/leecode-copy-list-with-random-pointer/"
-                    data-images="http://localhost:4000/img/post-bg-leetcode.jpg"
-                    data-content="原题描述
+                    data-thread-key="/2017/02/28/android-badger"
+                    data-title="安卓应用角标那些事儿"
+                    data-url="http://localhost:4000/2017/02/28/android-badger/"
+                    data-images="http://localhost:4000/img/post-bg-android-logo.jpg"
+                    data-content="什么是应用角标？
+    应用角标最开始是在ios系统中出现的，大概长这样：
+  
 
-  A linked list is given such that each node contains an additional ran... | 王昭阳的部落格 | Wzystal's Blog " >
+    不知道从什么时候开始，国内各大安卓手机系统上，也慢慢出现了应... | 王昭阳的部落格 | Wzystal's Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -288,13 +294,9 @@ public class Solution {
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2014/07/02/word-break/" data-toggle="tooltip" data-placement="top" title="LeetCode | Word Break">&larr; Previous Post</a>
+                        <a href="/2017/02/25/android-art-04/" data-toggle="tooltip" data-placement="top" title="《Android开发艺术探索》读书笔记 - View的工作原理">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2014/07/14/leecode-single-number/" data-toggle="tooltip" data-placement="top" title="LeetCode | Single Number">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
@@ -303,9 +305,9 @@ public class Solution {
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="/2014/07/14/leecode-copy-list-with-random-pointer"
-                        data-title="LeetCode | Copy List with Random Pointer"
-                        data-url="http://localhost:4000/2014/07/14/leecode-copy-list-with-random-pointer/" >
+                        data-thread-key="/2017/02/28/android-badger"
+                        data-title="安卓应用角标那些事儿"
+                        data-url="http://localhost:4000/2017/02/28/android-badger/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->

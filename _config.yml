@@ -54,8 +54,9 @@ duoshuo_username: wzystal
 # Share component is depend on Comment so we can NOT use share only.
 duoshuo_share: true                     # set to false if you want to use Comment without Sharing
 
-
-
+#seo
+google_site_verification: true
+baidu_site_verification: true
 
 # Analytics settings
 # Baidu Analytics

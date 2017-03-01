@@ -2,6 +2,7 @@
 layout:     post
 title:      "Ubuntu系统下安装和配置JDK"
 subtitle:   "如何在Ubuntu下，根据自己的需要来安装和配置JDK"
+descripotion: "如何在Ubuntu下，根据自己的需要来安装和配置JDK"
 date:       2014-01-16 21:05
 author:     "wzystal"
 header-img: "img/post-bg-ubuntu-logo.jpg"

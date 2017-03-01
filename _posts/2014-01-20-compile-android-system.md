@@ -2,6 +2,7 @@
 layout:     post
 title:      "基于Chipsee资料编译Android系统"
 subtitle:   "基于Chipsee提供的相关资料编译出Android 4.0.3文件系统，并移植到Pandaboard ES开发板上运行"
+description: "基于Chipsee提供的相关资料编译出Android 4.0.3文件系统，并移植到Pandaboard ES开发板上运行"
 date:       2014-01-20 16:00
 author:     "wzystal"
 header-img: "img/post-bg-android-logo.jpg"

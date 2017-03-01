@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="聊一聊安卓应用角标适配那些事儿">
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
@@ -146,7 +146,7 @@
                     <h1>安卓应用角标那些事儿</h1>
                     
                     
-                    <h2 class="subheading">聊一聊安卓应用角标那些事儿</h2>
+                    <h2 class="subheading">聊一聊安卓应用角标适配那些事儿</h2>
                     
                     <span class="meta">Posted by wzystal on February 28, 2017</span>
                 </div>
@@ -173,7 +173,7 @@
 <p>    不知道从什么时候开始，国内各大安卓手机系统上，也慢慢出现了应用角标的身影，到现在几乎成为了安卓系统的标配，发张图片让大家近距离感受一下：
 <img src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/8bcf1bf26d4409ba9e9a36a0f4d9a832.png" alt="screenshot.png" /></p>
 
-<p>    但是有一点要特别提一下，那就是<code class="highlighter-rouge">原生的Android系统，是不支持应用角标的</code>（这也是文章标题没有用“Android”的原因）。毕竟应用角标是一个带有争议的设计，有些强迫症用户对应用角标咬牙切齿，有些用户看不到应用角标又浑身痒痒，对于这一点我也只能说“仁者见仁，智者见智”吧。</p>
+<p>    但是有一点要特别提一下，那就是<code class="highlighter-rouge">原生的Android系统，是不支持应用角标的</code>（这也是文章标题没有叫“安卓角标”而不是“Android角标”的原因）。毕竟应用角标是一个带有争议的设计，有些强迫症用户对应用角标咬牙切齿，有些用户看不到应用角标又浑身痒痒，对于这一点我也只能说“仁者见仁，智者见智”吧。</p>
 
 <h2 id="如何支持应用角标">如何支持应用角标？</h2>
 <p>    安卓应用的角标是由Launcher支持的，而原生的Android系统Launcher并没有提供角标支持，所以各大手机厂商只能自己定制Launcher来实现，然后提供接口给外部使用。主流的做法都是通过广播Intent的形式来提供接口，不同的手机系统所支持的广播Intent也不太一样，所以需要针对不同的手机系统来做适配（恭喜你又成功跳入一个系统适配的坑！）。</p>
@@ -181,7 +181,7 @@
 <h2 id="角标开源库介绍">角标开源库介绍</h2>
 <p>    相信每个安卓开发者看到系统适配这几个字，都不会不由自主喷出一口老血。。。但是这次不用慌，因为已经有不怕死的家伙为我们造好了轮子，接下来就为大家隆重推出 <a href="https://github.com/leolin310148/ShortcutBadger">ShortcutBadger</a> （github大法好啊～真是好～）。这个开源库为我们封装了各种系统适配的细节，如文档所描述的，拥有了ShortcutBadger，你也就免除了以下系统适配的烦恼：
   <img src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/989eca40f7a45f24740a613796610260.png" alt="角标02.png" /><br />
-    但在实际使用时，你会发现，图片很美，现实却很残酷！经不完全测试（原谅我的“不完全”，毕竟安卓机型碎片化太过严重），我发现这个开源库对于小米、华为、vivo和oppo等主流机型的支持都是有各种问题的，要么完全不奏效，要么就有bug。当然这个开源库也在不断完善，但是在它还不够稳定的情况下，建议大家还是先用来当备选方案，支持一些冷门机型可以，主流机型还是自己适配比较靠谱点。</p>
+    但在实际使用时，你会发现，图片很美，现实却很残酷！经不完全测试（原谅我的“不完全”，毕竟安卓机型碎片化太过严重），我发现这个开源库对于小米、华为、vivo和oppo等主流机型的支持都是有各种问题的，要么完全不奏效，要么就有bug。当然这个开源库也在不断完善，不过在它还不够稳定的情况下，建议大家还是先用来当备选方案，支持一些冷门机型可以，主流机型还是自己适配比较靠谱点。</p>
 
 <h2 id="特殊机型适配">特殊机型适配</h2>
 

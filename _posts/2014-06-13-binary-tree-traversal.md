@@ -1,7 +1,8 @@
 ---
 layout:     post
-title:      "LeetCode | Binary Tree traversal"
+title:      "LeetCode | Binary Tree Traversal"
 subtitle:   "分别使用递归、非递归方法，实现二叉树的先序、中序和后序遍历。"
+description: "LeetCode算法实现 - Binary Tree Traversal"
 date:       2014-06-13 09:02
 author:     "wzystal"
 header-img: "img/post-bg-leetcode.jpg"

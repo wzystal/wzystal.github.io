@@ -2,6 +2,7 @@
 layout:     post
 title:      "LeetCode | Copy List with Random Pointer"
 subtitle:   "A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null. Return a deep copy of the list."
+description: "LeetCode算法实现 - Copy List with Random Pointer"
 date:       2014-07-14 19:21
 author:     "wzystal"
 header-img: "img/post-bg-leetcode.jpg"

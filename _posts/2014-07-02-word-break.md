@@ -2,6 +2,7 @@
 layout:     post
 title:      "LeetCode | Word Break"
 subtitle:   "Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words."
+description: "LeetCode算法实现 - Word Break"
 date:       2014-07-02 21:28
 author:     "wzystal"
 header-img: "img/post-bg-leetcode.jpg"

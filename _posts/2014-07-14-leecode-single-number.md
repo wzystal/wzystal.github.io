@@ -2,6 +2,7 @@
 layout:     post
 title:      "LeetCode | Single Number"
 subtitle:   "Given an array of integers, every element appears twice except for one. Find that single one."
+description: "LeetCode算法实现-Single Number"
 date:       2014-07-14 19:21
 author:     "wzystal"
 header-img: "img/post-bg-leetcode.jpg"

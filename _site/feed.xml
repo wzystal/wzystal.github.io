@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 28 Feb 2017 23:50:04 +0800</pubDate>
-    <lastBuildDate>Tue, 28 Feb 2017 23:50:04 +0800</lastBuildDate>
+    <pubDate>Wed, 01 Mar 2017 11:26:38 +0800</pubDate>
+    <lastBuildDate>Wed, 01 Mar 2017 11:26:38 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -18,7 +18,7 @@
 &lt;p&gt;    不知道从什么时候开始，国内各大安卓手机系统上，也慢慢出现了应用角标的身影，到现在几乎成为了安卓系统的标配，发张图片让大家近距离感受一下：
 &lt;img src=&quot;http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/8bcf1bf26d4409ba9e9a36a0f4d9a832.png&quot; alt=&quot;screenshot.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;    但是有一点要特别提一下，那就是&lt;code class=&quot;highlighter-rouge&quot;&gt;原生的Android系统，是不支持应用角标的&lt;/code&gt;（这也是文章标题没有用“Android”的原因）。毕竟应用角标是一个带有争议的设计，有些强迫症用户对应用角标咬牙切齿，有些用户看不到应用角标又浑身痒痒，对于这一点我也只能说“仁者见仁，智者见智”吧。&lt;/p&gt;
+&lt;p&gt;    但是有一点要特别提一下，那就是&lt;code class=&quot;highlighter-rouge&quot;&gt;原生的Android系统，是不支持应用角标的&lt;/code&gt;（这也是文章标题没有叫“安卓角标”而不是“Android角标”的原因）。毕竟应用角标是一个带有争议的设计，有些强迫症用户对应用角标咬牙切齿，有些用户看不到应用角标又浑身痒痒，对于这一点我也只能说“仁者见仁，智者见智”吧。&lt;/p&gt;
 
 &lt;h2 id=&quot;如何支持应用角标&quot;&gt;如何支持应用角标？&lt;/h2&gt;
 &lt;p&gt;    安卓应用的角标是由Launcher支持的，而原生的Android系统Launcher并没有提供角标支持，所以各大手机厂商只能自己定制Launcher来实现，然后提供接口给外部使用。主流的做法都是通过广播Intent的形式来提供接口，不同的手机系统所支持的广播Intent也不太一样，所以需要针对不同的手机系统来做适配（恭喜你又成功跳入一个系统适配的坑！）。&lt;/p&gt;
@@ -26,7 +26,7 @@
 &lt;h2 id=&quot;角标开源库介绍&quot;&gt;角标开源库介绍&lt;/h2&gt;
 &lt;p&gt;    相信每个安卓开发者看到系统适配这几个字，都不会不由自主喷出一口老血。。。但是这次不用慌，因为已经有不怕死的家伙为我们造好了轮子，接下来就为大家隆重推出 &lt;a href=&quot;https://github.com/leolin310148/ShortcutBadger&quot;&gt;ShortcutBadger&lt;/a&gt; （github大法好啊～真是好～）。这个开源库为我们封装了各种系统适配的细节，如文档所描述的，拥有了ShortcutBadger，你也就免除了以下系统适配的烦恼：
   &lt;img src=&quot;http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/989eca40f7a45f24740a613796610260.png&quot; alt=&quot;角标02.png&quot; /&gt;&lt;br /&gt;
-    但在实际使用时，你会发现，图片很美，现实却很残酷！经不完全测试（原谅我的“不完全”，毕竟安卓机型碎片化太过严重），我发现这个开源库对于小米、华为、vivo和oppo等主流机型的支持都是有各种问题的，要么完全不奏效，要么就有bug。当然这个开源库也在不断完善，但是在它还不够稳定的情况下，建议大家还是先用来当备选方案，支持一些冷门机型可以，主流机型还是自己适配比较靠谱点。&lt;/p&gt;
+    但在实际使用时，你会发现，图片很美，现实却很残酷！经不完全测试（原谅我的“不完全”，毕竟安卓机型碎片化太过严重），我发现这个开源库对于小米、华为、vivo和oppo等主流机型的支持都是有各种问题的，要么完全不奏效，要么就有bug。当然这个开源库也在不断完善，不过在它还不够稳定的情况下，建议大家还是先用来当备选方案，支持一些冷门机型可以，主流机型还是自己适配比较靠谱点。&lt;/p&gt;
 
 &lt;h2 id=&quot;特殊机型适配&quot;&gt;特殊机型适配&lt;/h2&gt;
 

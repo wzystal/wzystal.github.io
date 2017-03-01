@@ -1,12 +1,12 @@
 ---
 layout:     post  
 title:      "安卓应用角标那些事儿"  
-subtitle:   "聊一聊安卓应用角标那些事儿"  
+subtitle:   "聊一聊安卓应用角标适配那些事儿"  
+description: "聊一聊安卓应用角标适配那些事儿"
 date:       2017-02-28 23:43  
 author:     "wzystal"  
 header-img: "img/post-bg-android-logo.jpg"  
-tags:   
-- Android
+tags: [Android]
 ---
 
 ## 什么是应用角标？

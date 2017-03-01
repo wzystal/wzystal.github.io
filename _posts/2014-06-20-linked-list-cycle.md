@@ -2,6 +2,7 @@
 layout:     post
 title:      "LeetCode | Linked List Cycle"
 subtitle:   "判断一个单链表是否有环，若有环的话，返回环的入口点。空间复杂度为O(1)"
+description: "LeetCode算法实现 - Linked List Cycle"
 date:       2014-06-20 20:50
 author:     "wzystal"
 header-img: "img/post-bg-leetcode.jpg"

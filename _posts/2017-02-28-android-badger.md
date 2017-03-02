@@ -51,7 +51,7 @@ context.getContentResolver().call(Uri.parse("content://com.huawei.android.launch
 
 ```
 
-###小米系列
+### 小米系列
 &emsp;&emsp; 传送门：[小米角标官方文档](http://dev.xiaomi.com/docs/appsmarket/technical_docs/badge/)
 
 &emsp;&emsp; 在小米机型上，系统默认是支持应用角标的，不过支持的方式非常反人类，导致经常有用户来反馈说角标数字不对的问题。小米官方文档关于默认情况是这么描述的：
@@ -68,7 +68,8 @@ Method method = extraNotification.getClass().getDeclaredMethod("setMessageCount"
 method.invoke(extraNotification, unreadCount);
 ```
 
-###OPPO系列  
+### OPPO系列  
+
 &emsp;&emsp; 抱歉，没有发现官方文档。  
 &emsp;&emsp; 联系过oppo的开发者客服，客服MM表示：
 > oppo角标提醒目前只针对内部软件还有微信、QQ开放，其他的暂时无法提供
@@ -78,7 +79,8 @@ method.invoke(extraNotification, unreadCount);
 
 &emsp;&emsp; 嗯，虽然被拒绝了，但是希望还是有的，那就继续关注[oppo开发者官网](http://open.oppomobile.com/admin)吧～
 
-###VIVO系列  
+### VIVO系列  
+
 &emsp;&emsp; 抱歉，没有发现官方文档。  
 &emsp;&emsp; 不过最近有幸在网上看到一段代码，据说能支持vivo角标展示，抱着“死马当作活马医”的心态，我尝试了一把，最后发现居然奏效了。不多说了，贴代码共赏之：
 
@@ -91,7 +93,8 @@ intent.putExtra("notificationNum", msgCount);
 context.sendBroadcast(intent);
 ```
 
-###Sony系列
+### Sony系列
+
 &emsp;&emsp; 参考资料：[https://developer.sony.com/2016/06/23/xperia-home-badge-api-now-publicly-available/](https://developer.sony.com/2016/06/23/xperia-home-badge-api-now-publicly-available/)  
 
 

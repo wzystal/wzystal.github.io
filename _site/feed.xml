@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 01 Mar 2017 11:26:38 +0800</pubDate>
-    <lastBuildDate>Wed, 01 Mar 2017 11:26:38 +0800</lastBuildDate>
+    <pubDate>Thu, 02 Mar 2017 12:50:37 +0800</pubDate>
+    <lastBuildDate>Thu, 02 Mar 2017 12:50:37 +0800</lastBuildDate>
     <generator>Jekyll v3.4.0</generator>
     
       <item>
@@ -18,7 +18,7 @@
 &lt;p&gt;    不知道从什么时候开始，国内各大安卓手机系统上，也慢慢出现了应用角标的身影，到现在几乎成为了安卓系统的标配，发张图片让大家近距离感受一下：
 &lt;img src=&quot;http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/8bcf1bf26d4409ba9e9a36a0f4d9a832.png&quot; alt=&quot;screenshot.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;    但是有一点要特别提一下，那就是&lt;code class=&quot;highlighter-rouge&quot;&gt;原生的Android系统，是不支持应用角标的&lt;/code&gt;（这也是文章标题没有叫“安卓角标”而不是“Android角标”的原因）。毕竟应用角标是一个带有争议的设计，有些强迫症用户对应用角标咬牙切齿，有些用户看不到应用角标又浑身痒痒，对于这一点我也只能说“仁者见仁，智者见智”吧。&lt;/p&gt;
+&lt;p&gt;    但是有一点要特别提一下，那就是&lt;code class=&quot;highlighter-rouge&quot;&gt;原生的Android系统，是不支持应用角标的&lt;/code&gt;（这也是文章标题叫“安卓角标”而不是“Android角标”的原因）。毕竟应用角标是一个带有争议的设计，有些强迫症用户对应用角标咬牙切齿，有些用户看不到应用角标又浑身痒痒，对于这一点我也只能说“仁者见仁，智者见智”吧。&lt;/p&gt;
 
 &lt;h2 id=&quot;如何支持应用角标&quot;&gt;如何支持应用角标？&lt;/h2&gt;
 &lt;p&gt;    安卓应用的角标是由Launcher支持的，而原生的Android系统Launcher并没有提供角标支持，所以各大手机厂商只能自己定制Launcher来实现，然后提供接口给外部使用。主流的做法都是通过广播Intent的形式来提供接口，不同的手机系统所支持的广播Intent也不太一样，所以需要针对不同的手机系统来做适配（恭喜你又成功跳入一个系统适配的坑！）。&lt;/p&gt;
@@ -53,15 +53,15 @@ context.getContentResolver().call(Uri.parse(&quot;content://com.huawei.android.l
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;###小米系列
-   传送门：&lt;a href=&quot;http://dev.xiaomi.com/docs/appsmarket/technical_docs/badge/&quot;&gt;小米角标官方文档&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;小米系列&quot;&gt;小米系列&lt;/h3&gt;
+&lt;p&gt;   传送门：&lt;a href=&quot;http://dev.xiaomi.com/docs/appsmarket/technical_docs/badge/&quot;&gt;小米角标官方文档&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;   在小米机型上，系统默认是支持应用角标的，不过支持的方式非常反人类，导致经常有用户来反馈说角标数字不对的问题。小米官方文档关于默认情况是这么描述的：&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;当app向通知栏发送了一条通知 （通知不带进度条并且用户可以删除的），那么桌面app icon角标就会显示1。此时app显示的角标数是和通知栏里app发送的通知数对应的，即向通知栏发送了多少通知就会显示多少角标。&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;   那么吃瓜群众肯定又要问了，What are you talking about？！不要慌，我举一个例子大家就明白了，比如说千牛客户端，每收到一条未读的聊天消息，就会往通知栏发送一条通知（由于业务需要，通知id都是同一个），假如用户收到了5条未读消息，理论上来说千牛的角标数字应该显示5，但是在小米机型上你会惊奇地发现角标数字居然是1。这是因为默认情况下，应用的角标数字跟应用往通知栏发送的通知数（&lt;code class=&quot;highlighter-rouge&quot;&gt;注意！这个通知数是根据通知id来计算的&lt;/code&gt;）相对应的，在刚刚说的场景中，&lt;code class=&quot;highlighter-rouge&quot;&gt;虽然千牛往通知栏发送了5条通知，但是按照通知id来统计时，对应的通知数就是1，所以角标数字也就是显示成1了&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;   那么吃瓜群众肯定又要问了，What are you talking about？！不要慌，我举一个例子大家就明白了，比如说千牛客户端，每收到一条未读的聊天消息，就会往通知栏发送一条通知（由于业务需要，通知id都是同一个），假如用户收到了5条未读消息，理论上来说千牛的角标数字应该显示5，但是在小米机型上你会惊奇地发现角标数字居然是1。这是因为默认情况下，应用的角标数字跟应用往通知栏发送的通知数（&lt;code class=&quot;highlighter-rouge&quot;&gt;注意！这个通知数是根据通知id来计算的&lt;/code&gt;）相对应的，在刚刚说的场景中，&lt;code class=&quot;highlighter-rouge&quot;&gt;虽然千牛往通知栏发送了5条通知，但是按照通知id来统计时，对应的通知数就是1，所以角标数字也就显示成1了&lt;/code&gt;。&lt;/p&gt;
 
 &lt;p&gt;   小米官方可能也意识到了，这个奇葩的设计会导致很多用户产生困惑，所以在官方文档中也提供了修改角标数的接口。不同于其他手机系统通过广播来修改角标，小米系统是通过反射机制来修改角标，关键代码参考如下：&lt;/p&gt;
 
@@ -72,8 +72,9 @@ method.invoke(extraNotification, unreadCount);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;###OPPO系列
-   抱歉，没有发现官方文档。&lt;br /&gt;
+&lt;h3 id=&quot;oppo系列&quot;&gt;OPPO系列&lt;/h3&gt;
+
+&lt;p&gt;   抱歉，没有发现官方文档。&lt;br /&gt;
    联系过oppo的开发者客服，客服MM表示：&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;oppo角标提醒目前只针对内部软件还有微信、QQ开放，其他的暂时无法提供&lt;/p&gt;
@@ -84,10 +85,11 @@ method.invoke(extraNotification, unreadCount);
   &lt;p&gt;后续应该会计划对其他应用开放的，敬请关注我们的开发平台&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;   嗯，虽然被拒绝了，但是希望还是有的，那就继续关注&lt;a href=&quot;http://open.oppomobile.com/admin&quot;&gt;oppo开发者官网地址&lt;/a&gt;吧～&lt;/p&gt;
+&lt;p&gt;   嗯，虽然被拒绝了，但是希望还是有的，那就继续关注&lt;a href=&quot;http://open.oppomobile.com/admin&quot;&gt;oppo开发者官网&lt;/a&gt;吧～&lt;/p&gt;
 
-&lt;p&gt;###VIVO系列 
-   抱歉，没有发现官方文档。&lt;br /&gt;
+&lt;h3 id=&quot;vivo系列&quot;&gt;VIVO系列&lt;/h3&gt;
+
+&lt;p&gt;   抱歉，没有发现官方文档。&lt;br /&gt;
    不过最近有幸在网上看到一段代码，据说能支持vivo角标展示，抱着“死马当作活马医”的心态，我尝试了一把，最后发现居然奏效了。不多说了，贴代码共赏之：&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Intent intent = new Intent(&quot;launcher.action.CHANGE_APPLICATION_NOTIFICATION_NUM&quot;);
@@ -99,8 +101,9 @@ context.sendBroadcast(intent);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;###Sony系列
-   参考资料：&lt;a href=&quot;https://developer.sony.com/2016/06/23/xperia-home-badge-api-now-publicly-available/&quot;&gt;https://developer.sony.com/2016/06/23/xperia-home-badge-api-now-publicly-available/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;sony系列&quot;&gt;Sony系列&lt;/h3&gt;
+
+&lt;p&gt;   参考资料：&lt;a href=&quot;https://developer.sony.com/2016/06/23/xperia-home-badge-api-now-publicly-available/&quot;&gt;https://developer.sony.com/2016/06/23/xperia-home-badge-api-now-publicly-available/&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 28 Feb 2017 23:43:00 +0800</pubDate>

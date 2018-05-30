@@ -11,44 +11,44 @@ tags: [Android]
 
 
 
-### 清除应用数据
+####清除应用数据
 > adb shell pm clear com.xx.yy
 
-### 查看前台Activity
-> adb shell dumpsys activity activities | grep ResumedActivity
+####查看前台Activity  
+- adb shell dumpsys activity activities | grep ResumedActivity
 
-### 屏幕截图
+####屏幕截图
 > adb shell screencap -p /sdcard/xx.png
 
-### 录制屏幕
+####录制屏幕
 > adb shell screenrecord --bit-rate 16m /sdcard/test.mp4
 
-### 传输文件到电脑
+####传输文件到电脑
 > adb pull /sdcard/xx ~/tmp，不指定电脑路径的话，默认传输到当前目录
 
-### 传输文件到手机
+####传输文件到手机
 > adb push xx /sdcard/
 
-### 列出所有应用
+####列出所有应用
 > adb shell pm list packages，-s 系统应用，-3 三方应用
 
-### 向指定receiver发送广播
+####向指定receiver发送广播
 > adb shell am broadcast -a android.intent.action.xxx -n com.xx.yy/.ZZReceiver
 
-### 强制停止应用
+####强制停止应用
 > adb shell am force-stop com.xx.yy
 
-### 查看设备信息
+####查看设备信息
 > adb shell getprop ro.product.model
 
-### 查看系统属性
+####查看系统属性
 > adb shell cat /system/build.prop
 
-### 查看系统版本
+####查看系统版本
 > adb shell getprop ro.build.version.release
 
-### 查看屏幕分辨率
+####查看屏幕分辨率
 > adb shell wm size
 
-### 查看屏幕密度
+####查看屏幕密度
 > adb shell wm density

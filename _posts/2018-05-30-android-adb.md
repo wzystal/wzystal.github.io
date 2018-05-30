@@ -15,7 +15,7 @@ tags: [Android]
 > adb shell pm clear com.xx.yy
 
 #### 查看前台Activity  
-> adb shell dumpsys activity activities | grep ResumedActivity
+> adb shell dumpsys activity activities / grep ResumedActivity
 
 #### 屏幕截图
 > adb shell screencap -p /sdcard/xx.png
